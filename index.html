@@ -3,8 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>맛보기 동화</title>
-<meta name="description" content="퍼블릭 도메인 세계 명작 동화와 한국 전래동화의 줄거리·주요 인물·장별 스토리 데이터베이스" />
+<title>맛보기 동화 · Tale Buffet</title>
+<meta name="description" content="맛보기 동화(Tale Buffet) — 퍼블릭 도메인 세계 명작 동화와 한국 전래동화의 줄거리·주요 인물·장별 스토리를 한자리에서. 교육뮤지컬 수업 아이디어까지 담은 이야기 데이터베이스." />
+<meta name="author" content="교육뮤지컬 꿈꾸는 치수쌤" />
+<meta property="og:title" content="맛보기 동화 · Tale Buffet" />
+<meta property="og:description" content="세계 명작 동화와 한국 전래동화를 한자리에서. 줄거리·인물·장별 스토리와 교육뮤지컬 수업 아이디어까지." />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23BFD9F2'/><stop offset='1' stop-color='%23FFD6E0'/></linearGradient></defs><rect width='32' height='32' rx='7' fill='url(%23g)'/><path d='M16 9.2C13.4 7.9 9.2 7.7 6.5 8.7v14.2c2.7-1 6.9-.8 9.5.5 2.6-1.3 6.8-1.5 9.5-.5V8.7c-2.7-1-6.9-.8-9.5.5z' fill='%23fff'/><path d='M16 9.2v14.7' stroke='%2316324F' stroke-width='1.1' stroke-linecap='round'/><path d='M8.7 11.5c1.7-.4 3.6-.3 5 .3M8.7 14.2c1.7-.4 3.6-.3 5 .3M18.3 11.8c1.4-.6 3.3-.7 5-.3M18.3 14.5c1.4-.6 3.3-.7 5-.3' stroke='%236E8FB0' stroke-width='.9' stroke-linecap='round' fill='none'/></svg>" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
@@ -27,29 +32,56 @@ body{font-size:16px;line-height:1.6;color:var(--color-gray-900);background:#FBFB
 a{color:inherit;}
 :focus-visible{outline:3px solid var(--color-primary);outline-offset:2px;border-radius:var(--border-radius-sm);}
 
-/* Header */
-.site-header{background:linear-gradient(135deg,var(--color-pastel-blue) 0%,var(--color-pastel-pink) 100%);padding:var(--spacing-lg) var(--spacing-md) var(--spacing-xl);}
-.header-inner{max-width:1100px;margin:0 auto;text-align:center;}
-.brand{display:inline-flex;align-items:center;gap:var(--spacing-sm);color:var(--color-pastel-blue-dark);font-weight:700;font-size:14px;}
-.site-header h1{font-family:'Grandiflora One','Pretendard',cursive;font-weight:400;font-size:3rem;line-height:1.2;
-  margin-top:var(--spacing-xs);color:#16324F;letter-spacing:1px;
-  -webkit-text-stroke:1.2px #16324F;text-shadow:2px 2px 0 rgba(255,255,255,.6);}
-@media(min-width:768px){.site-header h1{font-size:3.75rem;-webkit-text-stroke:1.6px #16324F;}}
+/* Top navigation bar */
+:root{--nav-h:62px;}
+.site-nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid #E7EBF0;height:var(--nav-h);display:flex;align-items:center;}
+.nav-inner{max-width:1100px;width:100%;margin:0 auto;padding:0 var(--spacing-lg);display:flex;align-items:center;justify-content:space-between;gap:var(--spacing-md);}
+.nav-brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo{width:36px;height:36px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:20px;
+  border-radius:10px;background:linear-gradient(135deg,var(--color-pastel-blue),var(--color-pastel-pink));box-shadow:0 2px 6px rgba(22,50,79,.12);}
+.nav-brand-text{display:flex;flex-direction:column;line-height:1.15;}
+.nav-brand-text strong{font-size:17px;font-weight:800;color:#16324F;letter-spacing:.2px;}
+.nav-brand-text em{font-style:normal;font-size:11px;font-weight:600;color:var(--color-gray-500);letter-spacing:1.5px;text-transform:uppercase;}
+.nav-help{width:40px;height:40px;border:1px solid #E4E7EB;border-radius:50%;background:var(--color-white);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--color-gray-500);transition:all .2s;}
+.nav-help:hover{color:var(--color-primary);border-color:var(--color-primary);}
 
-/* Search & filters */
-.toolbar{max-width:1100px;margin:calc(var(--spacing-lg) * -1) auto 0;padding:0 var(--spacing-md);position:sticky;top:0;z-index:20;}
-.toolbar-card{background:var(--color-white);border:1px solid #E4E7EB;border-radius:var(--border-radius-lg);box-shadow:0 4px 16px rgba(0,0,0,.08);padding:var(--spacing-md);}
-.search-row{display:flex;align-items:center;gap:var(--spacing-sm);border:1px solid var(--color-gray-300);border-radius:var(--border-radius-md);padding:8px var(--spacing-md);transition:border-color .2s,box-shadow .2s;}
-.search-row:focus-within{border-color:var(--color-primary);box-shadow:0 0 0 3px rgba(0,109,210,.15);}
-.search-row .material-icons-outlined{color:var(--color-gray-500);}
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--color-pastel-blue) 0%,#E7ECFB 45%,var(--color-pastel-pink) 100%);
+  padding:var(--spacing-xl) var(--spacing-md) calc(var(--spacing-xl) + 8px);position:relative;overflow:hidden;}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 0%,rgba(255,255,255,.45),transparent 70%);pointer-events:none;}
+.hero-inner{max-width:760px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.7);color:var(--color-pastel-blue-dark);
+  font-weight:700;font-size:13px;padding:6px 14px;border-radius:999px;box-shadow:0 1px 4px rgba(22,50,79,.08);}
+.hero-badge .material-icons-outlined{font-size:16px;}
+.hero-title{font-family:'Grandiflora One','Pretendard',cursive;font-weight:400;font-size:3rem;line-height:1.15;
+  margin-top:var(--spacing-md);color:#16324F;letter-spacing:1px;-webkit-text-stroke:1.2px #16324F;text-shadow:2px 2px 0 rgba(255,255,255,.6);}
+.hero-sub{font-size:14px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--color-pastel-pink-dark);margin-top:6px;}
+.hero-desc{font-size:15px;color:#33475B;margin-top:var(--spacing-md);line-height:1.7;}
+.hero-search{display:flex;align-items:center;gap:var(--spacing-sm);background:var(--color-white);
+  border:1px solid transparent;border-radius:999px;padding:12px var(--spacing-lg);margin:var(--spacing-lg) auto 0;max-width:620px;
+  box-shadow:0 8px 24px rgba(22,50,79,.14);transition:border-color .2s,box-shadow .2s;}
+.hero-search:focus-within{border-color:var(--color-primary);box-shadow:0 8px 28px rgba(0,109,210,.22);}
+.hero-search .material-icons-outlined{color:var(--color-primary);}
 #search{flex:1;border:none;outline:none;font-size:16px;background:transparent;color:var(--color-gray-900);}
-#clearBtn{border:none;background:none;cursor:pointer;color:var(--color-gray-500);display:none;}
-.chips{display:flex;gap:var(--spacing-xs);margin-top:var(--spacing-md);overflow-x:auto;padding-bottom:2px;scrollbar-width:thin;}
+#clearBtn{border:none;background:none;cursor:pointer;color:var(--color-gray-500);display:none;padding:0;}
+.hero-stats{display:flex;align-items:center;justify-content:center;gap:var(--spacing-lg);margin-top:var(--spacing-lg);flex-wrap:wrap;}
+.hero-stat{display:flex;flex-direction:column;align-items:center;line-height:1.2;}
+.hero-stat b{font-size:1.5rem;font-weight:800;color:#16324F;}
+.hero-stat span{font-size:12px;color:#4A5B6B;margin-top:2px;}
+.hero-stat-div{width:1px;height:28px;background:rgba(22,50,79,.18);}
+@media(min-width:768px){.hero-title{font-size:3.75rem;-webkit-text-stroke:1.6px #16324F;}}
+
+/* Filter toolbar (sticky under nav) */
+.toolbar{position:sticky;top:var(--nav-h);z-index:30;background:rgba(251,251,252,.94);backdrop-filter:blur(8px);border-bottom:1px solid #ECEFF3;}
+.toolbar-inner{max-width:1100px;margin:0 auto;padding:12px var(--spacing-md);display:flex;align-items:center;gap:var(--spacing-md);flex-wrap:wrap;}
+.chips{display:flex;gap:var(--spacing-xs);overflow-x:auto;padding-bottom:2px;scrollbar-width:thin;flex:1;min-width:0;}
 .chip{flex:0 0 auto;border:1px solid var(--color-gray-300);background:var(--color-white);color:var(--color-gray-700);
   border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;}
 .chip:hover{border-color:var(--color-primary);color:var(--color-primary);}
 .chip[aria-pressed="true"]{background:var(--color-primary);border-color:var(--color-primary);color:#fff;}
-.count{font-size:13px;color:var(--color-gray-500);margin-top:var(--spacing-sm);}
+.count{font-size:13px;color:var(--color-gray-500);white-space:nowrap;flex:0 0 auto;}
 
 /* Grid */
 main{flex:1;max-width:1100px;width:100%;margin:0 auto;padding:var(--spacing-lg) var(--spacing-md) var(--spacing-xl);}
@@ -112,7 +144,28 @@ main{flex:1;max-width:1100px;width:100%;margin:0 auto;padding:var(--spacing-lg) 
 .btn-primary{background:var(--color-primary);color:#fff;}
 .btn-primary:hover{background:#0056A8;}
 .btn-secondary{background:var(--color-gray-100);color:var(--color-gray-700);border:1px solid var(--color-gray-300);}
+.btn-secondary:hover{background:#ECECEC;}
 .btn .material-icons-outlined{font-size:18px;}
+a.btn{text-decoration:none;}
+
+/* External reference links */
+.sheet-links{display:flex;flex-wrap:wrap;gap:var(--spacing-sm);margin-bottom:var(--spacing-lg);}
+.link-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;font-size:14px;font-weight:600;
+  text-decoration:none;border:1px solid var(--color-gray-300);background:var(--color-white);color:var(--color-gray-700);transition:all .18s;}
+.link-btn:hover{border-color:var(--color-primary);color:var(--color-primary);box-shadow:0 2px 8px rgba(0,109,210,.12);}
+.link-btn .material-icons-outlined{font-size:17px;}
+.link-btn .ext{font-size:14px;color:var(--color-gray-300);}
+.link-btn:hover .ext{color:var(--color-primary);}
+.link-hint{font-size:12px;color:var(--color-gray-500);margin-bottom:var(--spacing-md);}
+
+/* Help dialog */
+.help-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:60;align-items:center;justify-content:center;padding:var(--spacing-md);}
+.help-overlay.open{display:flex;}
+.help-card{background:var(--color-white);border-radius:var(--border-radius-lg);max-width:440px;width:100%;padding:var(--spacing-lg);position:relative;box-shadow:0 12px 40px rgba(0,0,0,.25);}
+.help-card h2{font-size:1.375rem;margin-bottom:var(--spacing-md);color:#16324F;}
+.help-card ul{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.help-card li{display:flex;gap:10px;font-size:14px;color:var(--color-gray-700);line-height:1.55;}
+.help-card li .material-icons-outlined{color:var(--color-primary);font-size:20px;flex:0 0 auto;}
 
 /* Footer */
 .chichiboo-footer{width:100%;padding:var(--spacing-md) var(--spacing-lg);background:var(--color-gray-100);
@@ -123,7 +176,7 @@ main{flex:1;max-width:1100px;width:100%;margin:0 auto;padding:var(--spacing-lg) 
 .note{font-size:12px;color:var(--color-gray-500);text-align:center;margin-top:var(--spacing-lg);}
 
 @media print{
-  .site-header,.toolbar,.chichiboo-footer,.closeBtn,.sheet-actions,.grid{display:none!important;}
+  .site-nav,.hero,.toolbar,.help-overlay,.chichiboo-footer,.closeBtn,.sheet-actions,.sheet-links,.link-hint,.grid{display:none!important;}
   .overlay{position:static;display:block;background:none;padding:0;}
   .sheet{box-shadow:none;max-width:none;}
   .chapter p{display:block!important;}
@@ -134,22 +187,51 @@ main{flex:1;max-width:1100px;width:100%;margin:0 auto;padding:var(--spacing-lg) 
 </head>
 <body>
 
-<header class="site-header">
-  <div class="header-inner">
-    <div class="brand"><span class="material-icons-outlined">auto_stories</span>세상에서 가장 쉬운 뮤지컬 수업</div>
-    <h1>맛보기 동화</h1>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top" aria-label="맛보기 동화 홈">
+      <span class="nav-logo">📖</span>
+      <span class="nav-brand-text"><strong>맛보기 동화</strong><em>Tale Buffet</em></span>
+    </a>
+    <button class="nav-help" id="helpBtn" aria-label="이용 안내 열기" title="이용 안내">
+      <span class="material-icons-outlined">help_outline</span>
+    </button>
   </div>
 </header>
 
-<div class="toolbar">
-  <div class="toolbar-card">
-    <div class="search-row">
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <span class="hero-badge"><span class="material-icons-outlined">auto_stories</span>세상에서 가장 쉬운 뮤지컬 수업</span>
+    <h1 class="hero-title">맛보기 동화</h1>
+    <p class="hero-sub">Tale Buffet</p>
+    <p class="hero-desc">세계 명작 동화와 한국 전래동화를 한자리에서.<br />줄거리·주요 인물·장별 스토리를 살펴보고 교육뮤지컬 수업으로 이어 보세요.</p>
+    <div class="hero-search">
       <span class="material-icons-outlined">search</span>
       <input id="search" type="search" placeholder="제목, 인물, 주제로 검색 (예: 호랑이, 질투, 마녀)" aria-label="작품 검색" />
       <button id="clearBtn" aria-label="검색어 지우기"><span class="material-icons-outlined">close</span></button>
     </div>
+    <div class="hero-stats" id="heroStats"></div>
+  </div>
+</section>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
     <div class="chips" id="chips" role="group" aria-label="출처 필터"></div>
     <div class="count" id="count"></div>
+  </div>
+</div>
+
+<div class="help-overlay" id="helpOverlay" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+  <div class="help-card">
+    <button class="closeBtn" id="helpClose" aria-label="닫기"><span class="material-icons-outlined">close</span></button>
+    <h2 id="helpTitle">맛보기 동화 이용 안내</h2>
+    <ul>
+      <li><span class="material-icons-outlined">search</span>제목·인물·주제로 검색하거나 출처 필터로 이야기를 골라 보세요.</li>
+      <li><span class="material-icons-outlined">menu_book</span>작품 카드를 누르면 줄거리·인물·장별 스토리를 자세히 볼 수 있어요.</li>
+      <li><span class="material-icons-outlined">travel_explore</span>위키백과·나무위키 버튼으로 이야기를 더 깊이 살펴볼 수 있어요.</li>
+      <li><span class="material-icons-outlined">theater_comedy</span>‘교육뮤지컬 수업 더하기’에서 바로 쓸 수 있는 수업 아이디어를 얻어 보세요.</li>
+      <li><span class="material-icons-outlined">print</span>인쇄·PDF 저장과 텍스트 복사로 수업 자료를 손쉽게 만들 수 있어요.</li>
+    </ul>
   </div>
 </div>
 
@@ -196,7 +278,7 @@ const STORIES = [
     {title:"5장 · 놀부의 박", text:"소문을 들은 놀부는 제비 다리를 일부러 부러뜨린 뒤 고쳐 주고 박씨를 얻는다. 그러나 놀부의 박에서는 빚쟁이, 상여꾼, 도깨비가 나와 재산을 모조리 앗아 간다."},
     {title:"6장 · 화해", text:"거지가 된 놀부가 흥부를 찾아온다. 흥부는 형을 원망하지 않고 함께 살자 하고, 놀부는 비로소 잘못을 뉘우친다."}
   ],
-  musical:["박 타는 톱질 리듬을 보디퍼커션 → 앙상블 넘버로 확장","놀부를 코믹 빌런으로 설정해 과장 연기 훈련","'박에서 무엇이 나올까' 즉흥 장면 만들기"]
+  musical:["박을 타는 톱질 리듬을 보디퍼커션으로 익힌 뒤 앙상블 넘버로 확장해 보세요.","놀부를 코믹한 악당으로 설정해 과장된 몸짓과 표정 연기를 연습해 보세요.","박 속에서 무엇이 나올지 상상하며 즉흥 장면을 만들어 보세요."]
 },
 {
   id:"kongjwi", title:"콩쥐팥쥐", titleEn:"Kongjwi and Patjwi", author:"작자 미상",
@@ -218,7 +300,7 @@ const STORIES = [
     {title:"5장 · 신발의 주인", text:"꽃신을 주운 원님이 주인을 찾는다. 팥쥐와 계모가 신어 보지만 맞지 않고, 콩쥐의 발에 꼭 맞아 혼인이 이루어진다."},
     {title:"6장 · 드러난 진실", text:"팥쥐가 콩쥐를 해치고 그 자리를 차지하려 하지만, 연꽃과 구슬로 되살아난 콩쥐가 진실을 밝히고 계모와 팥쥐는 벌을 받는다."}
   ],
-  musical:["밑 빠진 독 장면을 목소리로 만드는 사운드스케이프","신데렐라와 장면 비교 후 같은 노래 가사 바꿔 쓰기","조력자(소·두꺼비·참새) 동물 움직임 캐릭터화"]
+  musical:["밑 빠진 독에 물을 채우는 장면을 목소리만으로 표현하는 사운드스케이프를 만들어 보세요.","신데렐라와 장면을 비교한 뒤 같은 노래에 가사를 바꿔 붙여 보세요.","소·두꺼비·참새 같은 조력자를 동물의 움직임으로 캐릭터화해 보세요."]
 },
 {
   id:"simcheong", title:"심청전", titleEn:"The Tale of Sim Cheong", author:"작자 미상 (판소리계 소설)",
@@ -240,7 +322,7 @@ const STORIES = [
     {title:"5장 · 연꽃과 황후", text:"연꽃에 실려 물 위로 떠오른 심청을 뱃사람들이 발견해 임금께 바치고, 심청은 황후가 된다."},
     {title:"6장 · 맹인 잔치", text:"심청은 전국의 맹인을 불러 잔치를 연다. 딸의 목소리를 알아본 심 봉사가 놀라 눈을 번쩍 뜨고, 잔치에 모인 맹인들도 함께 눈을 뜬다."}
   ],
-  musical:["파란 천 한 장으로 인당수 파도 만들기(오브제 연극)","'눈을 뜨는 순간'을 몸과 소리만으로 표현","심청의 결심 장면 독백 넘버 창작"]
+  musical:["파란 천 한 장으로 인당수의 파도를 만드는 오브제 연극을 시도해 보세요.","눈을 뜨는 순간을 몸짓과 소리만으로 표현해 보세요.","심청이 결심하는 장면을 독백 넘버로 창작해 보세요."]
 },
 {
   id:"haedal", title:"해와 달이 된 오누이", titleEn:"The Sun and the Moon", author:"작자 미상",
@@ -262,7 +344,7 @@ const STORIES = [
     {title:"5장 · 동아줄", text:"다급해진 오누이가 하늘에 빌자 튼튼한 동아줄이 내려온다. 호랑이도 빌지만 썩은 동아줄이 내려와 끊어지고, 수수밭에 떨어져 죽는다."},
     {title:"6장 · 해와 달", text:"하늘에 오른 오누이는 해와 달이 된다. 어두운 밤을 무서워한 누이를 위해 오빠가 자리를 바꾸어, 누이가 해가 되었다는 이야기도 전한다."}
   ],
-  musical:["'떡 하나 주면 안 잡아먹지' 리프레인 넘버 만들기","여러 명이 함께 움직이는 집단 호랑이 퍼펫 제작","동아줄 장면을 슬로모션 군무로 구성"]
+  musical:["‘떡 하나 주면 안 잡아먹지’를 반복되는 리프레인 넘버로 만들어 보세요.","여러 명이 함께 움직이는 집단 호랑이 퍼펫을 만들어 보세요.","동아줄 장면을 슬로모션 군무로 구성해 보세요."]
 },
 {
   id:"seonnyeo", title:"선녀와 나무꾼", titleEn:"The Fairy and the Woodcutter", author:"작자 미상",
@@ -284,7 +366,7 @@ const STORIES = [
     {title:"5장 · 두레박", text:"사슴의 조언대로 하늘에서 내려온 두레박을 타고 나무꾼도 하늘에 올라 가족과 재회한다."},
     {title:"6장 · 수탉이 된 나무꾼", text:"어머니가 그리워 천마를 타고 잠시 내려온 나무꾼은 말에서 내리지 말라는 금기를 어긴다. 하늘로 돌아가지 못한 그는 지붕에 올라 하늘을 향해 울다 수탉이 되었다."}
   ],
-  musical:["날개옷을 감춘 행동에 대한 찬반 토론 후 결말 다시 쓰기","선녀 시점 독백 넘버 창작하기","하늘과 땅의 높이 차를 무대 레벨(단)로 표현"]
+  musical:["날개옷을 감춘 나무꾼의 행동을 두고 찬반 토론을 한 뒤 결말을 다시 써 보세요.","선녀의 시점에서 부르는 독백 넘버를 창작해 보세요.","하늘과 땅의 높이 차이를 무대 단(레벨)으로 표현해 보세요."]
 },
 {
   id:"gyeonu", title:"견우와 직녀", titleEn:"The Cowherd and the Weaver Girl", author:"작자 미상 (동아시아 공통 설화)",
@@ -306,7 +388,7 @@ const STORIES = [
     {title:"5장 · 오작교", text:"땅의 까마귀와 까치가 이 소식을 듣고 하늘로 날아올라 머리를 맞대어 다리를 놓는다. 두 사람은 마침내 손을 잡는다."},
     {title:"6장 · 칠석의 비", text:"칠석날 오는 비는 만남의 기쁨, 이튿날 오는 비는 헤어짐의 눈물이라 한다. 사람들은 이날 밤 하늘을 올려다본다."}
   ],
-  musical:["학급 전원이 몸으로 오작교를 만드는 군무","칠석 계기교육 + 별자리 이미지 무대 배경 만들기","'일 년에 하루'라는 조건으로 편지 낭독 장면 구성"]
+  musical:["학급 전원이 몸으로 오작교를 만드는 군무를 구성해 보세요.","칠석 계기교육과 연계해 별자리 이미지로 무대 배경을 만들어 보세요.","‘일 년에 하루’라는 조건을 살려 편지를 낭독하는 장면을 꾸며 보세요."]
 },
 {
   id:"byeoljubu", title:"별주부전 (토끼전)", titleEn:"The Rabbit and the Turtle", author:"작자 미상 (판소리계 소설)",
@@ -328,7 +410,7 @@ const STORIES = [
     {title:"5장 · 달아나는 토끼", text:"육지에 닿자마자 토끼는 자라를 비웃으며 숲으로 달아난다. 자라는 멍하니 바다를 바라본다."},
     {title:"6장 · 남은 이야기", text:"자라가 산신령에게 약을 얻어 돌아갔다는 이야기, 그대로 빈손으로 돌아갔다는 이야기 등 결말이 여럿 전한다."}
   ],
-  musical:["용궁 조정 회의를 즉흥극으로 — 배역 다수 분배 가능","'누가 진짜 나쁜가' 모의재판 장면 창작","토끼의 임기응변 대사를 랩/사설조로 만들기"]
+  musical:["용궁 조정 회의를 즉흥극으로 꾸며 여러 배역을 고루 나눠 맡아 보세요.","‘누가 진짜 나쁜가’를 주제로 모의재판 장면을 창작해 보세요.","토끼의 임기응변 대사를 랩이나 사설조로 만들어 보세요."]
 },
 {
   id:"geumdokki", title:"금도끼 은도끼", titleEn:"The Golden Axe", author:"작자 미상 (이솝 우화 유입 설화)",
@@ -349,7 +431,7 @@ const STORIES = [
     {title:"5장 · 흉내 낸 이웃", text:"이야기를 들은 이웃이 일부러 도끼를 연못에 던진다. 산신령이 금도끼를 내밀자 냉큼 제 것이라 우긴다."},
     {title:"6장 · 잃어버린 쇠도끼", text:"산신령은 노하여 사라지고, 이웃은 금도끼도 제 쇠도끼도 얻지 못한 채 빈손으로 돌아간다."}
   ],
-  musical:["세 번 반복 질문을 3절 노래로 작곡","산신령 등장을 조명 대신 천과 소리로 연출","저학년 첫 뮤지컬 대본 만들기 실습용 텍스트"]
+  musical:["세 번 반복되는 산신령의 질문을 3절 노래로 작곡해 보세요.","산신령의 등장을 조명 대신 천과 소리로 연출해 보세요.","저학년의 첫 뮤지컬 대본을 만드는 실습 자료로 활용해 보세요."]
 },
 {
   id:"hokburi", title:"혹부리 영감", titleEn:"The Old Man with a Lump", author:"작자 미상",
@@ -370,7 +452,7 @@ const STORIES = [
     {title:"5장 · 흉내 낸 노래", text:"빈집에서 억지로 노래를 부르자 도깨비들이 다시 모인다. 혹에서 소리가 난다는 말에 도깨비 대장이 눈을 부라린다."},
     {title:"6장 · 혹 두 개", text:"지난번 혹이 가짜였다며 노한 도깨비들은 그 혹을 이웃 영감 턱에 마저 붙인다. 그는 혹 두 개를 달고 산을 내려온다."}
   ],
-  musical:["도깨비 방망이 리듬을 보디퍼커션 군무로","혹부리 영감의 노래를 학급 창작곡으로 만들기","도깨비 캐릭터 디자인 후 가면·소품 제작"]
+  musical:["도깨비 방망이 리듬을 보디퍼커션 군무로 만들어 보세요.","혹부리 영감이 부르는 노래를 학급 창작곡으로 만들어 보세요.","도깨비 캐릭터를 디자인한 뒤 가면과 소품으로 제작해 보세요."]
 },
 {
   id:"ureong", title:"우렁각시", titleEn:"The Snail Bride", author:"작자 미상",
@@ -391,7 +473,7 @@ const STORIES = [
     {title:"5장 · 원님의 눈에 띄다", text:"들에 나온 각시를 본 원님이 그 미모를 탐내 내기를 걸어 각시를 데려간다."},
     {title:"6장 · 새가 된 총각", text:"총각은 각시를 그리다 세상을 떠나 새가 되었고, 각시 또한 뒤를 따랐다고 전한다. 기다림의 금기를 어긴 대가였다."}
   ],
-  musical:["'기다림'을 정지 동작(스틸 이미지)으로 표현하기","우렁각시 시점으로 결말 바꿔 쓰기","밥상이 차려지는 과정을 무언극으로 구성"]
+  musical:["‘기다림’을 정지 동작(스틸 이미지)으로 표현해 보세요.","우렁각시의 시점에서 결말을 다시 써 보세요.","밥상이 차려지는 과정을 무언극으로 구성해 보세요."]
 },
 /* ── 그림 형제 ────────────────────────────── */
 {
@@ -414,7 +496,7 @@ const STORIES = [
     {title:"5장 · 구두의 주인", text:"왕자는 구두가 맞는 사람을 찾아 집집마다 돈다. 두 언니는 발을 억지로 밀어 넣지만 맞지 않는다."},
     {title:"6장 · 꼭 맞는 발", text:"마지막으로 불려 나온 신데렐라의 발에 구두가 꼭 맞는다. 왕자는 그를 데려가고, 언니들의 허영은 대가를 치른다."}
   ],
-  musical:["자정 카운트다운을 긴장감 있는 넘버로 만들기","콩쥐팥쥐와 나란히 놓고 인물·장면 비교표 만들기","무도회 장면 왈츠 스텝 + 가면 소품 제작"]
+  musical:["자정을 향한 카운트다운을 긴장감 있는 넘버로 만들어 보세요.","콩쥐팥쥐와 나란히 놓고 인물과 장면을 비교하는 표를 만들어 보세요.","무도회 장면을 왈츠 스텝과 가면 소품으로 꾸며 보세요."]
 },
 {
   id:"snowwhite", title:"백설공주", titleEn:"Snow White", author:"그림 형제",
@@ -436,7 +518,7 @@ const STORIES = [
     {title:"5장 · 유리관", text:"독사과를 먹고 쓰러진 공주를 난쟁이들은 차마 묻지 못하고 유리관에 눕혀 산꼭대기에 둔다."},
     {title:"6장 · 깨어남", text:"관을 옮기던 중 충격으로 목에 걸렸던 사과 조각이 빠지고 공주가 눈을 뜬다. 왕비는 제 질투의 대가를 치른다."}
   ],
-  musical:["거울 장면 미러링(둘씩 마주 보기) 신체 연기 훈련","일곱 난쟁이 성격 카드 뽑아 캐릭터 만들기","'세 번의 방문' 반복 구조로 장면 만들기 실습"]
+  musical:["거울 장면을 둘씩 마주 보는 미러링으로 신체 연기를 훈련해 보세요.","일곱 난쟁이의 성격 카드를 뽑아 저마다의 캐릭터를 만들어 보세요.","‘세 번의 방문’이라는 반복 구조로 장면 만들기를 실습해 보세요."]
 },
 {
   id:"hansel", title:"헨젤과 그레텔", titleEn:"Hansel and Gretel", author:"그림 형제",
@@ -458,7 +540,7 @@ const STORIES = [
     {title:"5장 · 우리와 화덕", text:"노파는 마녀였다. 헨젤은 우리에 갇혀 살이 찌워지고, 그레텔은 부엌일을 한다. 헨젤은 뼈다귀를 내밀어 마녀의 눈을 속인다."},
     {title:"6장 · 탈출", text:"화덕을 들여다보라는 말에 그레텔은 모르는 척하다 마녀를 밀어 넣는다. 남매는 보물을 챙겨 집으로 돌아가고 계모는 이미 죽어 있었다."}
   ],
-  musical:["빵 부스러기를 먹는 새들 — 대사 없는 무언극","그레텔을 주인공으로 다시 읽고 장면 재구성","과자집 유혹 장면을 감각 묘사 가사로 쓰기"]
+  musical:["빵 부스러기를 먹는 새들을 대사 없는 무언극으로 표현해 보세요.","그레텔을 주인공으로 다시 읽으며 장면을 재구성해 보세요.","과자집의 유혹 장면을 감각을 묘사하는 가사로 써 보세요."]
 },
 {
   id:"redhood", title:"빨간 모자", titleEn:"Little Red Riding Hood", author:"샤를 페로 / 그림 형제",
@@ -480,7 +562,7 @@ const STORIES = [
     {title:"5장 · 사냥꾼의 가위", text:"코 고는 소리를 이상히 여긴 사냥꾼이 늑대의 배를 가른다. 할머니와 소녀가 살아서 나온다."},
     {title:"6장 · 돌을 채운 배", text:"셋은 늑대의 배에 돌을 채워 넣는다. 잠에서 깬 늑대는 무거워 달아나지 못하고 쓰러진다."}
   ],
-  musical:["'왜 그렇게 커요' 문답을 크레셴도 넘버로","페로판·그림판 결말 비교 토론 후 제3의 결말 창작","늑대의 위장 — 목소리 변조 연기 실습"]
+  musical:["‘왜 그렇게 커요’라고 묻는 문답을 점점 커지는 크레셴도 넘버로 만들어 보세요.","페로판과 그림판의 결말을 비교해 토론한 뒤 제3의 결말을 창작해 보세요.","늑대의 위장을 목소리 변조 연기로 실습해 보세요."]
 },
 {
   id:"bremen", title:"브레멘 음악대", titleEn:"Town Musicians of Bremen", author:"그림 형제",
@@ -502,7 +584,7 @@ const STORIES = [
     {title:"5장 · 돌아온 도둑", text:"밤중에 돌아온 도둑 하나가 어둠 속에서 고양이에게 할퀴고 개에게 물리고 당나귀에게 차이고 수탉의 울음을 듣는다. 그는 마녀와 괴물이 있다며 도망친다."},
     {title:"6장 · 브레멘에 가지 않다", text:"동물들은 그 집이 마음에 들어 눌러앉는다. 브레멘 음악대는 끝내 브레멘에 도착하지 않았다."}
   ],
-  musical:["네 동물 목소리를 쌓는 4성부 앙상블 훈련","'쓸모'를 주제로 한 나만의 노래 가사 쓰기","동물 탑 쌓기 장면을 안전한 조형 동작으로 구성"]
+  musical:["네 동물의 목소리를 쌓아 올리는 4성부 앙상블을 훈련해 보세요.","‘쓸모’를 주제로 나만의 노래 가사를 써 보세요.","동물 탑을 쌓는 장면을 안전한 조형 동작으로 구성해 보세요."]
 },
 {
   id:"rapunzel", title:"라푼젤", titleEn:"Rapunzel", author:"그림 형제",
@@ -524,7 +606,7 @@ const STORIES = [
     {title:"5장 · 떨어진 왕자", text:"아무것도 모르고 탑에 오른 왕자 앞에 마녀가 나타난다. 왕자는 탑에서 떨어져 가시에 눈을 찔려 앞을 못 보게 된다."},
     {title:"6장 · 눈물", text:"몇 해를 헤매던 왕자가 황야에서 라푼젤의 노래를 듣는다. 재회의 눈물이 눈에 닿자 왕자는 다시 보게 된다."}
   ],
-  musical:["긴 머리카락을 천·리본 오브제 하나로 상징화","'보호와 통제의 차이' 고학년 토론 후 장면 창작","탑 안팎을 무대 좌우로 나눈 동시 진행 장면"]
+  musical:["긴 머리카락을 천이나 리본 오브제 하나로 상징화해 보세요.","‘보호와 통제의 차이’를 주제로 고학년 토론을 한 뒤 장면을 창작해 보세요.","탑의 안과 밖을 무대 좌우로 나눠 동시에 진행되는 장면을 만들어 보세요."]
 },
 /* ── 안데르센 ────────────────────────────── */
 {
@@ -547,7 +629,7 @@ const STORIES = [
     {title:"5장 · 혼례", text:"왕자는 자신을 구했다고 믿는 이웃 나라 공주와 혼인한다. 첫 해가 뜨면 인어공주는 물거품이 된다."},
     {title:"6장 · 던진 칼", text:"언니들이 가져온 칼로 왕자를 찌르면 인어로 돌아갈 수 있다. 인어공주는 칼을 바다에 던지고 물거품이 되어, 선행으로 영혼을 얻을 수 있는 공기의 딸이 된다."}
   ],
-  musical:["대사 없이 감정만 전달하는 신체 표현 과제","디즈니판 결말과 비교 후 선택의 의미 토론","'목소리를 준다면' 나만의 거래 장면 즉흥극"]
+  musical:["대사 없이 감정만 전달하는 신체 표현 과제를 해 보세요.","디즈니판 결말과 비교하며 선택의 의미를 토론해 보세요.","‘목소리를 준다면’이라는 설정으로 나만의 거래 장면을 즉흥극으로 꾸며 보세요."]
 },
 {
   id:"duckling", title:"미운 오리 새끼", titleEn:"The Ugly Duckling", author:"한스 크리스티안 안데르센",
@@ -569,7 +651,7 @@ const STORIES = [
     {title:"5장 · 얼어붙은 호수", text:"혹독한 겨울, 얼음에 갇힌 새끼를 한 농부가 발견해 데려가지만 소동 끝에 다시 밖으로 나온다. 그는 겨울을 홀로 견딘다."},
     {title:"6장 · 물에 비친 모습", text:"봄이 오고 백조 무리를 본 그는 죽더라도 다가가겠다며 나아간다. 물에 비친 것은 한 마리 백조였다."}
   ],
-  musical:["물에 비친 모습을 다른 배우의 몸으로 표현","학기 초 자기이해 수업 — 나의 백조 순간 이야기하기","계절 변화를 색 천과 소리로 전환하는 연출"]
+  musical:["물에 비친 모습을 다른 배우의 몸으로 표현해 보세요.","학기 초 자기이해 수업에서 ‘나의 백조 순간’을 이야기해 보세요.","계절의 변화를 색 천과 소리로 전환하는 연출을 시도해 보세요."]
 },
 {
   id:"matchgirl", title:"성냥팔이 소녀", titleEn:"The Little Match Girl", author:"한스 크리스티안 안데르센",
@@ -590,7 +672,7 @@ const STORIES = [
     {title:"5장 · 할머니", text:"별똥별이 떨어지자 소녀는 할머니의 말을 떠올린다. 성냥을 긋자 할머니가 나타나고, 소녀는 붙잡으려 성냥을 모두 그어 버린다."},
     {title:"6장 · 새해 아침", text:"사람들은 다 타 버린 성냥 곁에서 미소 지은 채 얼어 있는 소녀를 발견한다. 아무도 그가 무엇을 보았는지 알지 못한다."}
   ],
-  musical:["성냥 하나마다 장면 전환 — 작은 불빛 소품 연출","환상 장면을 정지 동작 → 해체로 표현","무관심한 군중 코러스 만들기"]
+  musical:["성냥 하나가 켜질 때마다 장면이 바뀌도록 작은 불빛 소품으로 연출해 보세요.","환상 장면을 정지 동작으로 만들었다가 서서히 해체하며 표현해 보세요.","무관심한 군중을 코러스로 만들어 보세요."]
 },
 {
   id:"emperor", title:"벌거벗은 임금님", titleEn:"The Emperor's New Clothes", author:"한스 크리스티안 안데르센",
@@ -612,7 +694,7 @@ const STORIES = [
     {title:"5장 · 행진", text:"임금은 보이지 않는 옷을 입고 거리를 행진한다. 백성들도 서로의 눈치를 보며 감탄을 흉내 낸다."},
     {title:"6장 · 아이의 한마디", text:"한 아이가 '임금님이 벌거벗었다!'고 외친다. 속삭임은 군중 전체로 번지지만, 임금은 행진을 멈추지 못한다."}
   ],
-  musical:["침묵에서 술렁임까지 소리 크기를 설계하는 군중 장면","포럼시어터 — 관객이 아이 역할로 개입하기","'나도 모른 척한 적' 경험 나누고 장면 만들기"]
+  musical:["침묵에서 술렁임까지 소리의 크기를 설계하는 군중 장면을 만들어 보세요.","관객이 아이 역할로 개입하는 포럼시어터를 시도해 보세요.","‘나도 모른 척한 적’이 있는지 경험을 나눈 뒤 장면으로 만들어 보세요."]
 },
 /* ── 그 밖의 세계 명작 ────────────────────────────── */
 {
@@ -637,7 +719,7 @@ const STORIES = [
     {title:"6장 · 괴물의 뱃속", text:"바다에서 상어(고래)에게 삼켜진 피노키오는 뱃속에서 제페토를 만난다. 아버지를 업고 헤엄쳐 나온다."},
     {title:"7장 · 진짜 아이", text:"일해서 아버지를 돌보고 아픈 요정을 위해 돈을 모은다. 어느 날 아침 눈을 뜨니 그는 살과 피를 가진 아이가 되어 있다."}
   ],
-  musical:["마리오네트 워킹 → 사람의 걸음으로 변하는 무브먼트","코가 길어지는 순간을 소품 없이 표정·자세로","유혹하는 인물(여우·고양이) 듀엣 넘버 창작"]
+  musical:["마리오네트의 걸음이 사람의 걸음으로 변해 가는 움직임을 연습해 보세요.","코가 길어지는 순간을 소품 없이 표정과 자세만으로 표현해 보세요.","유혹하는 여우와 고양이의 듀엣 넘버를 창작해 보세요."]
 },
 {
   id:"oz", title:"오즈의 마법사", titleEn:"The Wonderful Wizard of Oz", author:"L. 프랭크 바움",
@@ -661,7 +743,7 @@ const STORIES = [
     {title:"6장 · 커튼 뒤의 사람", text:"돌아온 일행 앞에서 마법사의 정체가 드러난다. 그가 준 것은 겨 한 줌, 헝겊 심장, 초록 물약이었지만 셋은 이미 그것을 가지고 있었다."},
     {title:"7장 · 집으로", text:"열기구를 놓친 도로시에게 남쪽 마녀 글린다가 은구두의 비밀을 알려 준다. 뒤꿈치를 세 번 부딪치자 도로시는 캔자스로 돌아간다."}
   ],
-  musical:["노란 벽돌길 동선으로 장면 이동 설계 배우기","'이미 가진 것' 자기효능감 수업과 연결","동료 셋의 소원을 각각 솔로 넘버로 나누기"]
+  musical:["노란 벽돌길을 따라 장면이 이동하도록 동선을 설계해 보세요.","‘이미 가진 것’을 주제로 자기효능감 수업과 연결해 보세요.","세 동료의 소원을 각각 솔로 넘버로 나눠 불러 보세요."]
 },
 {
   id:"alice", title:"이상한 나라의 앨리스", titleEn:"Alice's Adventures in Wonderland", author:"루이스 캐럴",
@@ -684,7 +766,7 @@ const STORIES = [
     {title:"5장 · 여왕의 크로케", text:"홍학을 채로, 고슴도치를 공으로 쓰는 경기가 벌어진다. 여왕은 마음에 안 들면 목을 치라고 외친다."},
     {title:"6장 · 재판과 깨어남", text:"타르트를 훔친 죄를 묻는 재판에서 여왕이 판결부터 하라 명한다. 앨리스가 '너희는 그저 카드일 뿐!'이라 외치자 카드가 쏟아지고, 앨리스는 언니의 무릎에서 눈을 뜬다."}
   ],
-  musical:["몸의 크기 변화를 앙상블의 상대 위치로 표현","영어 말놀이를 한국어 말놀이로 바꿔 쓰는 번역 창작","다과회 장면 즉흥극 — 대답 없는 수수께끼 놀이"]
+  musical:["몸의 크기 변화를 앙상블의 상대적 위치로 표현해 보세요.","영어 말놀이를 한국어 말놀이로 바꿔 쓰는 번역 창작을 해 보세요.","다과회 장면을 대답 없는 수수께끼 놀이로 즉흥극을 꾸며 보세요."]
 },
 {
   id:"alibaba", title:"알리바바와 40인의 도둑", titleEn:"Ali Baba and the Forty Thieves", author:"천일야화 (아라비안나이트)",
@@ -706,7 +788,7 @@ const STORIES = [
     {title:"5장 · 기름 항아리", text:"상인으로 위장한 두목이 서른아홉 항아리에 도둑을 숨겨 집에 든다. 모르지아나가 이를 알아채고 끓는 기름을 부어 모두 처치한다."},
     {title:"6장 · 마지막 춤", text:"다시 손님으로 온 두목 앞에서 모르지아나가 단검을 든 춤을 춘다. 춤의 끝에서 그는 두목을 찌른다. 알리바바는 그를 며느리로 맞이한다."}
   ],
-  musical:["'열려라 참깨' 관객 참여형 주문 넘버","모르지아나 시점으로 다시 쓰기(시점 전환 수업)","항아리·단검 춤 장면을 리듬 있는 군무로 구성"]
+  musical:["‘열려라 참깨’를 관객이 함께 외치는 참여형 주문 넘버로 만들어 보세요.","모르지아나의 시점에서 다시 쓰며 시점 전환 수업을 해 보세요.","항아리와 단검이 등장하는 춤 장면을 리듬 있는 군무로 구성해 보세요."]
 }
 ];
 
@@ -729,7 +811,7 @@ STORIES.push(
     {title:"4장 · 등에 올라탄 것", text:"소도둑이 어둠 속에서 호랑이를 소로 알고 등에 올라탄다. 호랑이는 곶감이 자기를 잡았다고 여긴다."},
     {title:"5장 · 달아나는 밤", text:"호랑이는 죽을힘을 다해 달리고 도둑은 떨어질까 봐 매달린다. 날이 밝을 무렵 도둑은 나뭇가지를 붙잡고 벗어나고, 호랑이는 산속으로 사라진다."}
   ],
-  musical:["오해가 겹치는 구조를 관객만 아는 '아이러니 장면'으로 연출","호랑이의 겁먹은 속마음을 방백 대사로 만들기","달아나는 밤 장면을 제자리 달리기 + 리듬으로 표현"]
+  musical:["오해가 겹치는 구조를 관객만 아는 아이러니 장면으로 연출해 보세요.","호랑이의 겁먹은 속마음을 방백 대사로 만들어 보세요.","달아나는 밤 장면을 제자리 달리기와 리듬으로 표현해 보세요."]
 },
 {
   id:"patjuk", title:"팥죽 할멈과 호랑이", titleEn:"The Old Woman and the Tiger", author:"작자 미상",
@@ -749,7 +831,7 @@ STORIES.push(
     {title:"4장 · 호랑이의 밤", text:"들어온 호랑이가 아궁이 불을 쬐다 밤에 눈을 맞고, 물로 씻으려다 자라에게 물리고, 개똥에 미끄러져 송곳에 찔린다."},
     {title:"5장 · 강물로", text:"쓰러진 호랑이를 멍석이 둘둘 말고 지게가 짊어져 강물에 던진다. 할머니는 그제야 팥죽을 편히 먹는다."}
   ],
-  musical:["등장 순서대로 인물이 쌓이는 누적 구조 → 누적형 노래 만들기","'나는 작지만 이걸 할 수 있어' 자기 소개 릴레이 대사 창작","호랑이가 당하는 장면을 슬랩스틱 연쇄 동작으로 안전하게 구성"]
+  musical:["등장 순서대로 인물이 쌓이는 누적 구조를 살려 누적형 노래를 만들어 보세요.","‘나는 작지만 이걸 할 수 있어’라는 릴레이 자기소개 대사를 창작해 보세요.","호랑이가 당하는 장면을 안전한 슬랩스틱 연쇄 동작으로 구성해 보세요."]
 },
 {
   id:"samnyeon", title:"삼년고개", titleEn:"The Three-Year Hill", author:"작자 미상",
@@ -768,7 +850,7 @@ STORIES.push(
     {title:"4장 · 뒤집힌 셈", text:"찾아온 소년이 묻는다. 한 번에 삼 년이면 두 번 구르면 육 년, 열 번 구르면 삼십 년 아니냐고."},
     {title:"5장 · 데굴데굴", text:"노인은 고개로 달려가 신나게 구른다. 병은 씻은 듯 낫고 노인은 오래오래 산다."}
   ],
-  musical:["구르는 횟수를 세는 카운팅 넘버 만들기","'생각을 바꾸면 달라지는 것' 우리 반 사례로 장면 창작","소문이 퍼지는 장면을 속삭임 코러스로 표현"]
+  musical:["구르는 횟수를 세는 카운팅 넘버를 만들어 보세요.","‘생각을 바꾸면 달라지는 것’을 우리 반 사례로 장면화해 보세요.","소문이 퍼지는 장면을 속삭임 코러스로 표현해 보세요."]
 },
 {
   id:"kkachi", title:"은혜 갚은 까치", titleEn:"The Grateful Magpie", author:"작자 미상",
@@ -788,7 +870,7 @@ STORIES.push(
     {title:"4장 · 울린 종", text:"사람 하나 없는 산에서 종이 세 번 울린다. 구렁이는 약속대로 사라진다."},
     {title:"5장 · 종루 아래", text:"날이 밝아 올라가 보니 종 아래에 머리가 깨진 까치들이 죽어 있었다. 선비는 그들을 정성껏 묻어 준다."}
   ],
-  musical:["종소리 세 번을 침묵 → 소리로 설계하는 사운드 연출","까치의 마지막 비행을 슬로모션 무브먼트로","'은혜를 갚는다는 것' 주제로 편지 쓰고 낭독 장면 만들기"]
+  musical:["종소리 세 번을 침묵에서 소리로 설계하는 사운드 연출을 해 보세요.","까치의 마지막 비행을 슬로모션 무브먼트로 표현해 보세요.","‘은혜를 갚는다는 것’을 주제로 편지를 쓰고 낭독하는 장면을 만들어 보세요."]
 },
 {
   id:"dokkaebi", title:"도깨비 방망이", titleEn:"The Goblin's Magic Club", author:"작자 미상",
@@ -808,7 +890,7 @@ STORIES.push(
     {title:"4장 · 금 나와라 뚝딱", text:"방망이를 가져온 아이는 부모님과 함께 부자가 되어 이웃을 돕는다."},
     {title:"5장 · 흉내 낸 이웃", text:"똑같이 빈집에 든 이웃이 일부러 개암을 깨문다. 지난번 일을 기억하던 도깨비들은 그를 붙잡아 흠씬 두들겨 팬다."}
   ],
-  musical:["'금 나와라 뚝딱' 방망이 리듬을 후렴으로 하는 넘버","도깨비 잔치 장면 — 가면·소품 만들고 군무 구성","선한 아이/욕심쟁이 같은 장면 두 버전으로 연기 비교"]
+  musical:["‘금 나와라 뚝딱’을 후렴으로 삼아 방망이 리듬 넘버를 만들어 보세요.","도깨비 잔치 장면을 위해 가면과 소품을 만들고 군무를 구성해 보세요.","착한 아이와 욕심쟁이가 같은 장면을 두 버전으로 연기하며 비교해 보세요."]
 },
 {
   id:"barideogi", title:"바리데기", titleEn:"Princess Bari", author:"작자 미상 (서사무가)",
@@ -830,7 +912,7 @@ STORIES.push(
     {title:"5장 · 아홉 해의 노동", text:"무장승은 생명수의 값으로 노동과 세월을 요구한다. 바리는 물을 긷고 불을 때며 아홉 해를 보낸다."},
     {title:"6장 · 이승의 신", text:"돌아온 날 부모의 상여가 나가고 있었다. 바리가 생명수를 뿌리자 두 사람이 살아나고, 바리는 죽은 이를 인도하는 신이 된다."}
   ],
-  musical:["'왜 나였을까' 바리의 결심 독백 넘버 창작","저승길 관문들을 학급 모둠별 장면으로 나누어 제작","버림과 용서 — 고학년 토론 후 결말 다시 쓰기"]
+  musical:["‘왜 나였을까’라는 바리의 결심을 독백 넘버로 창작해 보세요.","저승길의 관문들을 학급 모둠별 장면으로 나눠 만들어 보세요.","버림과 용서를 주제로 고학년 토론을 한 뒤 결말을 다시 써 보세요."]
 },
 {
   id:"cheonggaeguri", title:"청개구리", titleEn:"The Green Frog", author:"작자 미상",
@@ -849,7 +931,7 @@ STORIES.push(
     {title:"4장 · 처음으로 그대로", text:"어머니가 세상을 떠나자 청개구리는 후회하며 유언을 그대로 지켜 냇가에 무덤을 만든다."},
     {title:"5장 · 비 오는 날", text:"비가 올 때마다 무덤이 떠내려갈까 봐 청개구리는 냇가에서 목 놓아 운다."}
   ],
-  musical:["'반대로 말하기' 놀이 → 반대말 대사 즉흥극","어머니의 속마음과 아들의 겉말을 동시에 들려주는 이중 대사","빗소리와 개구리 울음을 학급 사운드스케이프로 제작"]
+  musical:["‘반대로 말하기’ 놀이로 반대말 대사 즉흥극을 해 보세요.","어머니의 속마음과 아들의 겉말을 동시에 들려주는 이중 대사를 만들어 보세요.","빗소리와 개구리 울음을 학급 사운드스케이프로 제작해 보세요."]
 },
 {
   id:"sleeping", title:"잠자는 숲속의 공주", titleEn:"Sleeping Beauty", author:"샤를 페로 / 그림 형제",
@@ -871,7 +953,7 @@ STORIES.push(
     {title:"5장 · 백 년 뒤", text:"수많은 왕자가 덤불에 걸려 죽었지만, 백 년이 차던 날 찾아온 왕자 앞에서는 덤불이 꽃을 피우며 갈라진다."},
     {title:"6장 · 깨어난 성", text:"공주가 눈을 뜨자 성 전체가 하던 일을 그대로 이어 간다. 멈췄던 시간이 다시 흐른다."}
   ],
-  musical:["성 전체가 멈추는 순간 → 전원 정지 동작(프리즈) 연출","'초대받지 못한다는 것' 소외 주제 토론 후 장면 창작","백 년의 시간 경과를 소품·의상 변화로 압축 표현"]
+  musical:["성 전체가 멈추는 순간을 전원이 정지하는 프리즈로 연출해 보세요.","‘초대받지 못한다는 것’을 소외라는 주제로 토론한 뒤 장면을 창작해 보세요.","백 년의 시간 경과를 소품과 의상의 변화로 압축해 표현해 보세요."]
 },
 {
   id:"pussboots", title:"장화 신은 고양이", titleEn:"Puss in Boots", author:"샤를 페로",
@@ -893,7 +975,7 @@ STORIES.push(
     {title:"5장 · 사자와 생쥐", text:"성의 주인 식인귀에게 고양이가 묻는다. 사자로도 변할 수 있느냐, 그럼 생쥐로도? 변신한 순간 고양이가 삼킨다."},
     {title:"6장 · 후작이 된 아들", text:"성에 도착한 임금 앞에서 주인은 진짜 후작이 되어 있었다. 그는 공주와 혼인한다."}
   ],
-  musical:["'말이 사실을 만든다' — 소문 만들기 즉흥극","고양이의 허풍 대사를 랩/속사포 넘버로 창작","식인귀 변신 장면을 몸 크기 변화 연기로 표현"]
+  musical:["‘말이 사실을 만든다’를 주제로 소문 만들기 즉흥극을 해 보세요.","고양이의 허풍 대사를 랩이나 속사포 넘버로 창작해 보세요.","식인귀가 변신하는 장면을 몸의 크기 변화 연기로 표현해 보세요."]
 },
 {
   id:"frogprince", title:"개구리 왕자", titleEn:"The Frog Prince", author:"그림 형제",
@@ -914,7 +996,7 @@ STORIES.push(
     {title:"5장 · 벽으로 던지다", text:"참다못한 공주가 개구리를 벽에 힘껏 던진다. 바닥에 떨어진 것은 아름다운 눈을 가진 왕자였다."},
     {title:"6장 · 끊어진 쇠테", text:"돌아가는 마차에서 세 번 큰 소리가 난다. 슬픔에 가슴을 묶었던 하인리히의 쇠테가 끊어지는 소리였다."}
   ],
-  musical:["'약속'을 주제로 우리 반 규칙 만들고 장면화","싫은 것을 억지로 참는 마음을 표정·자세로 연기하기","공주 시점 / 개구리 시점 같은 장면 두 번 연기해 보기"]
+  musical:["‘약속’을 주제로 우리 반 규칙을 만들고 장면으로 꾸며 보세요.","싫은 것을 억지로 참는 마음을 표정과 자세로 연기해 보세요.","공주의 시점과 개구리의 시점으로 같은 장면을 두 번 연기해 보세요."]
 },
 {
   id:"sevenkids", title:"늑대와 일곱 마리 아기 염소", titleEn:"The Wolf and the Seven Young Kids", author:"그림 형제",
@@ -935,7 +1017,7 @@ STORIES.push(
     {title:"5장 · 가른 배", text:"나무 아래 잠든 늑대의 배를 어미가 가위로 가른다. 여섯 형제가 모두 살아서 뛰어나온다."},
     {title:"6장 · 우물가", text:"염소들이 늑대 배에 돌을 채우고 꿰맨다. 목이 마른 늑대는 우물에 몸을 기울이다 빠져 죽는다."}
   ],
-  musical:["목소리 위장 — 같은 대사를 세 가지 목소리로 연기하기","여섯 형제가 숨는 자리를 무대 곳곳으로 설계하는 공간 활동","'모르는 사람에게 문 열지 않기' 안전교육과 연계한 장면 창작"]
+  musical:["같은 대사를 세 가지 목소리로 연기하며 목소리 위장을 연습해 보세요.","여섯 형제가 숨는 자리를 무대 곳곳에 설계하는 공간 활동을 해 보세요.","‘모르는 사람에게 문 열지 않기’ 안전교육과 연계한 장면을 창작해 보세요."]
 },
 {
   id:"thumbelina", title:"엄지공주", titleEn:"Thumbelina", author:"한스 크리스티안 안데르센",
@@ -956,7 +1038,7 @@ STORIES.push(
     {title:"5장 · 굴 속의 제비", text:"땅굴에서 죽은 듯 누운 제비를 소녀가 겨우내 돌본다. 봄이 되자 제비가 눈을 뜬다."},
     {title:"6장 · 남쪽 나라", text:"혼례 전날, 제비가 소녀를 등에 태우고 따뜻한 나라로 날아간다. 그곳에서 그는 자기와 같은 사람들을 만나 이름을 얻는다."}
   ],
-  musical:["제비 등에 탄 비행 장면 — 천과 앙상블로 만드는 하늘","'남이 정해 준 자리' vs '내가 고른 자리' 토론 후 장면화","작은 몸의 시점을 큰 소품(거대 잎·꽃)으로 표현하기"]
+  musical:["제비 등에 탄 비행 장면을 천과 앙상블로 하늘처럼 만들어 보세요.","‘남이 정해 준 자리’와 ‘내가 고른 자리’를 토론한 뒤 장면화해 보세요.","작은 몸의 시점을 거대한 잎과 꽃 같은 큰 소품으로 표현해 보세요."]
 },
 {
   id:"snowqueen", title:"눈의 여왕", titleEn:"The Snow Queen", author:"한스 크리스티안 안데르센",
@@ -978,7 +1060,7 @@ STORIES.push(
     {title:"5장 · 얼음 궁전", text:"눈의 여왕의 궁전에서 카이는 얼음 조각으로 '영원'이라는 낱말을 맞추고 있다."},
     {title:"6장 · 눈물", text:"게르다의 뜨거운 눈물이 카이의 가슴을 녹이고 거울 조각이 씻겨 나온다. 두 사람이 돌아온 고향에는 장미가 피어 있다."}
   ],
-  musical:["게르다의 여정을 모둠별 장면(꽃밭·왕궁·숲·설원)으로 분담 제작","'차가운 말 / 따뜻한 말' 같은 대사를 두 온도로 연기하기","얼음 궁전 장면을 파랑 계열 조명·천으로 색채 설계"]
+  musical:["게르다의 여정을 꽃밭·왕궁·숲·설원으로 나눠 모둠별 장면으로 만들어 보세요.","같은 대사를 ‘차가운 말’과 ‘따뜻한 말’ 두 온도로 연기해 보세요.","얼음 궁전 장면을 파랑 계열 조명과 천으로 색채를 설계해 보세요."]
 },
 {
   id:"threepigs", title:"아기 돼지 삼형제", titleEn:"The Three Little Pigs", author:"영국 전래동화 (제이컵스 채록)",
@@ -997,7 +1079,7 @@ STORIES.push(
     {title:"4장 · 꿈쩍 않는 집", text:"늑대가 있는 힘껏 불어도 벽돌집은 흔들리지 않는다. 늑대는 지붕으로 올라간다."},
     {title:"5장 · 굴뚝", text:"굴뚝으로 내려온 늑대는 막내가 걸어 둔 끓는 솥에 빠져 비명을 지르며 달아난다. 삼형제는 벽돌집에서 함께 산다."}
   ],
-  musical:["'후, 후' 늑대의 숨을 리듬으로 만드는 관객 참여 넘버","집을 짓는 과정을 짚·나무·벽돌 세 가지 리듬으로 표현","늑대 시점으로 다시 쓰기(『늑대가 들려주는…』식 패러디 창작)"]
+  musical:["‘후, 후’ 늑대의 숨을 리듬으로 만드는 관객 참여 넘버를 꾸며 보세요.","집을 짓는 과정을 짚·나무·벽돌 세 가지 리듬으로 표현해 보세요.","늑대의 시점에서 이야기를 다시 쓰는 패러디를 창작해 보세요."]
 },
 {
   id:"jack", title:"잭과 콩나무", titleEn:"Jack and the Beanstalk", author:"영국 전래동화 (제이컵스 채록)",
@@ -1018,7 +1100,7 @@ STORIES.push(
     {title:"4장 · 세 번의 도둑질", text:"잭은 세 번에 걸쳐 금화 자루, 황금알을 낳는 암탉, 노래하는 하프를 훔쳐 내려온다."},
     {title:"5장 · 도끼", text:"하프의 외침에 깬 거인이 줄기를 타고 쫓아온다. 잭이 도끼로 콩나무를 찍자 거인은 땅으로 떨어진다."}
   ],
-  musical:["콩나무가 자라는 순간을 몸으로 쌓아 올리는 군무","'잭은 영웅인가 도둑인가' 모의재판 장면 창작","거인의 발소리를 발구르기 리듬으로 만드는 사운드 활동"]
+  musical:["콩나무가 자라는 순간을 여럿이 몸으로 쌓아 올리는 군무로 표현해 보세요.","‘잭은 영웅인가 도둑인가’를 두고 모의재판 장면을 창작해 보세요.","거인의 발소리를 발구르기 리듬으로 만드는 사운드 활동을 해 보세요."]
 },
 {
   id:"aladdin", title:"알라딘과 요술 램프", titleEn:"Aladdin and the Magic Lamp", author:"천일야화 (아라비안나이트)",
@@ -1040,7 +1122,7 @@ STORIES.push(
     {title:"5장 · 새 램프로 바꿔 드립니다", text:"돌아온 마법사가 낡은 램프를 새것으로 바꿔 준다고 외친다. 사정을 모르는 공주가 램프를 내주자 궁전째 사라진다."},
     {title:"6장 · 되찾은 램프", text:"반지의 정령의 힘으로 마법사를 찾아낸 알라딘은 공주와 힘을 합쳐 그를 물리치고 궁전을 되돌린다."}
   ],
-  musical:["'소원 세 가지' 를 주제로 우리 반 소원 노래 만들기","정령 등장을 천·연기 없이 앙상블의 몸으로 표현","속임수 장면(램프 교환)을 관객만 아는 서스펜스로 연출"]
+  musical:["‘소원 세 가지’를 주제로 우리 반의 소원 노래를 만들어 보세요.","정령의 등장을 천이나 연기 없이 앙상블의 몸으로 표현해 보세요.","램프를 바꾸는 속임수 장면을 관객만 아는 서스펜스로 연출해 보세요."]
 }
 );
 
@@ -1063,7 +1145,7 @@ STORIES.push(
     {title:"4장 · 돌려보내는 길", text:"겁이 난 시아버지가 며느리를 친정으로 데려가려 길을 나선다. 도중에 높은 가지에 매달린 탐스러운 배를 만난다."},
     {title:"5장 · 배를 떨어뜨린 방귀", text:"아무도 못 따던 배를 며느리가 방귀 한 방으로 우수수 떨어뜨려 큰돈을 받는다. 재주를 알아본 시아버지는 며느리를 도로 데리고 집으로 돌아온다."}
   ],
-  musical:["방귀 소리를 악기·목소리로 만드는 사운드 이펙트 활동","'참는 것 vs 표현하는 것' 을 몸짓으로 대비해 표현하기","집이 흔들리는 장면을 전원 리액션 군무로 구성"]
+  musical:["방귀 소리를 악기와 목소리로 만드는 사운드 이펙트 활동을 해 보세요.","참는 것과 표현하는 것을 몸짓으로 대비해 표현해 보세요.","집이 흔들리는 장면을 전원이 함께 반응하는 리액션 군무로 구성해 보세요."]
 },
 {
   id:"sogadoen", title:"소가 된 게으름뱅이", titleEn:"The Lazy Man Who Became an Ox", author:"작자 미상",
@@ -1083,7 +1165,7 @@ STORIES.push(
     {title:"4장 · 뉘우침", text:"쉴 틈 없는 노동에 지친 소는 게으름 피우던 지난날을 뼈저리게 후회한다. 차라리 죽는 게 낫겠다고 여긴다."},
     {title:"5장 · 무밭으로", text:"죽으려 무밭에 뛰어들어 무를 씹자, 소가죽이 벗겨지고 사람으로 돌아온다. 집으로 돌아간 그는 누구보다 부지런히 일한다."}
   ],
-  musical:["소가 되어 쟁기를 끄는 노동 장면을 리듬 있는 몸짓으로","게으를 때 / 부지런할 때 같은 하루를 두 버전으로 연기","'내가 소가 된다면' 상상 독백 대사 만들기"]
+  musical:["소가 되어 쟁기를 끄는 노동 장면을 리듬 있는 몸짓으로 표현해 보세요.","게으를 때와 부지런할 때의 같은 하루를 두 버전으로 연기해 보세요.","‘내가 소가 된다면’을 상상하며 독백 대사를 만들어 보세요."]
 },
 {
   id:"ohyeongje", title:"재주꾼 오형제", titleEn:"The Five Skilled Brothers", author:"작자 미상",
@@ -1104,7 +1186,7 @@ STORIES.push(
     {title:"4장 · 무너지는 다리", text:"강 앞에서는 긴다리 형이 몸을 늘여 다리가 되고, 무거운 짐은 힘센 막내가 든다."},
     {title:"5장 · 함께라서", text:"큰 위기가 닥칠 때마다 무쇠 형이 앞을 막고 형제들이 재주를 이어 붙여 넘긴다. 혼자서는 우스운 재주도 함께라면 무엇이든 해낸다."}
   ],
-  musical:["각 형제의 재주를 소개하는 다섯 개의 짧은 솔로 넘버","'나만의 재주' 를 찾아 오형제에 새 형제 만들어 넣기","위기 해결 장면을 릴레이 안무로 이어 붙이기"]
+  musical:["각 형제의 재주를 소개하는 다섯 개의 짧은 솔로 넘버를 만들어 보세요.","‘나만의 재주’를 찾아 오형제에 새로운 형제를 만들어 넣어 보세요.","위기를 해결하는 장면을 릴레이 안무로 이어 붙여 보세요."]
 },
 {
   id:"horangihyeong", title:"호랑이 형님", titleEn:"Brother Tiger", author:"작자 미상",
@@ -1123,7 +1205,7 @@ STORIES.push(
     {title:"4장 · 지켜진 약속", text:"세월이 흘러도 호랑이는 한 번도 거르지 않고 고기를 보낸다. 나무꾼도 그 마음을 형처럼 받든다."},
     {title:"5장 · 무덤을 지키다", text:"어머니가 돌아가시자 호랑이는 무덤가에서 슬피 울다 뒤따라 죽는다. 남은 새끼들까지 나무꾼의 집을 오래도록 돌본다."}
   ],
-  musical:["거짓말이 진심이 되는 과정을 표정 변화로 연기하기","호랑이의 속마음 독백('나는 정말 형일까?') 넘버 만들기","'가족은 무엇으로 되는가' 를 주제로 토론 후 장면 창작"]
+  musical:["거짓말이 진심으로 변해 가는 과정을 표정 변화로 연기해 보세요.","‘나는 정말 형일까?’라는 호랑이의 속마음을 독백 넘버로 만들어 보세요.","‘가족은 무엇으로 되는가’를 주제로 토론한 뒤 장면을 창작해 보세요."]
 },
 {
   id:"frauholle", title:"홀레 아주머니", titleEn:"Mother Holle", author:"그림 형제",
@@ -1145,7 +1227,7 @@ STORIES.push(
     {title:"5장 · 흉내 낸 친딸", text:"시샘한 계모가 게으른 친딸을 우물에 밀어 넣는다. 친딸은 빵도 사과도 모른 척하고 이불도 대충 턴다."},
     {title:"6장 · 검은 역청", text:"돌아가는 친딸에게는 금 대신 검은 역청이 쏟아진다. 좀처럼 씻기지 않는 그 자국이 게으름의 값이었다."}
   ],
-  musical:["이불을 터니 눈이 내리는 장면을 흰 천·종이눈으로 연출","금 처녀 / 검정 처녀 같은 길을 두 태도로 연기해 비교","'일한 만큼 받는다는 것' 공정함 주제로 이야기 나누기"]
+  musical:["이불을 털자 눈이 내리는 장면을 흰 천과 종이눈으로 연출해 보세요.","금 처녀와 검정 처녀가 같은 길을 걷는 장면을 두 태도로 연기하며 비교해 보세요.","‘일한 만큼 받는다는 것’을 공정함이라는 주제로 이야기 나눠 보세요."]
 },
 {
   id:"swanprince", title:"백조 왕자", titleEn:"The Wild Swans", author:"한스 크리스티안 안데르센",
@@ -1167,7 +1249,7 @@ STORIES.push(
     {title:"5장 · 화형대의 침묵", text:"수레에 실려 가면서도 엘리사는 마지막 옷을 마저 짠다. 끝내 입을 열지 않는다."},
     {title:"6장 · 날아든 백조", text:"불이 붙는 순간 백조 열한 마리가 내려앉는다. 옷을 던지자 오빠들이 사람으로 돌아오고, 엘리사는 비로소 입을 열어 진실을 말한다."}
   ],
-  musical:["말 없이 감정을 전하는 침묵 연기 집중 훈련","백조 ↔ 사람 변신 순간을 앙상블 대형 변화로 표현","'말하지 못하는 마음' 을 손짓·눈빛으로 전하는 무언 장면 창작"]
+  musical:["말 없이 감정을 전하는 침묵 연기를 집중해서 훈련해 보세요.","백조와 사람을 오가는 변신의 순간을 앙상블 대형 변화로 표현해 보세요.","‘말하지 못하는 마음’을 손짓과 눈빛으로 전하는 무언 장면을 창작해 보세요."]
 },
 {
   id:"beauty", title:"미녀와 야수", titleEn:"Beauty and the Beast", author:"보몽 부인 (르 프랭스 드 보몽)",
@@ -1188,7 +1270,7 @@ STORIES.push(
     {title:"5장 · 시들어 가는 야수", text:"돌아오지 않는 벨을 기다리다 야수는 장미와 함께 시들어 간다. 꿈에서 그 모습을 본 벨이 성으로 달려간다."},
     {title:"6장 · 풀린 저주", text:"쓰러진 야수 앞에서 벨이 사랑을 고백한다. 저주가 풀리고 야수는 본래의 왕자로 돌아온다."}
   ],
-  musical:["'겉모습으로 판단한 경험' 을 나누고 장면으로 만들기","야수의 외로움을 독백 넘버로 창작","무섭게 → 다정하게 변하는 야수를 한 배우가 단계별로 연기"]
+  musical:["‘겉모습으로 판단한 경험’을 나눈 뒤 장면으로 만들어 보세요.","야수의 외로움을 독백 넘버로 창작해 보세요.","무섭던 야수가 다정하게 변해 가는 모습을 한 배우가 단계별로 연기해 보세요."]
 },
 {
   id:"rumpel", title:"룸펠슈틸츠헨", titleEn:"Rumpelstiltskin", author:"그림 형제",
@@ -1208,7 +1290,7 @@ STORIES.push(
     {title:"4장 · 이름 찾기", text:"온갖 이름을 대 보지만 모두 틀린다. 왕비가 보낸 심부름꾼이 숲에서 춤추며 제 이름을 노래하는 난쟁이를 발견한다."},
     {title:"5장 · 룸펠슈틸츠헨", text:"마지막 날, 왕비가 '혹시 룸펠슈틸츠헨?'이라 묻는다. 이름을 들킨 난쟁이는 분을 못 이기고 사라진다."}
   ],
-  musical:["난쟁이가 제 이름을 노래하는 장면을 우스꽝스러운 솔로 넘버로","'이름 맞히기' 를 관객 참여 추리 게임으로 연출","허풍이 부른 사건 — 말의 무게를 주제로 이야기 나누기"]
+  musical:["난쟁이가 제 이름을 노래하는 장면을 우스꽝스러운 솔로 넘버로 만들어 보세요.","‘이름 맞히기’를 관객이 함께하는 참여형 추리 게임으로 연출해 보세요.","허풍이 부른 사건을 통해 ‘말의 무게’를 주제로 이야기 나눠 보세요."]
 },
 {
   id:"goldengoose", title:"황금 거위", titleEn:"The Golden Goose", author:"그림 형제",
@@ -1228,7 +1310,7 @@ STORIES.push(
     {title:"4장 · 웃지 않는 공주", text:"막내가 우스운 행렬을 끌고 성 앞을 지난다. 한 번도 웃은 적 없던 공주가 그 모습에 그만 깔깔 웃는다."},
     {title:"5장 · 약속대로", text:"공주를 웃기면 사위로 삼겠다던 임금이 약속을 지킨다. 착한 막내는 공주와 혼인해 잘 산다."}
   ],
-  musical:["사람들이 하나씩 붙는 장면을 누적 안무로 만들기","'거위 행렬' 을 학급 전원이 이어지는 군무로 연출","나눔이 부른 행운 — 착한 막내의 마음을 노래로 표현"]
+  musical:["사람들이 하나씩 붙는 장면을 누적 안무로 만들어 보세요.","‘거위 행렬’을 학급 전원이 이어지는 군무로 연출해 보세요.","나눔이 부른 행운을 통해 착한 막내의 마음을 노래로 표현해 보세요."]
 },
 {
   id:"pied", title:"피리 부는 사나이", titleEn:"The Pied Piper of Hamelin", author:"독일 전설 (하멜른)",
@@ -1248,7 +1330,7 @@ STORIES.push(
     {title:"4장 · 어긴 약속", text:"쥐가 사라지자 사람들은 마음이 변해 약속한 돈을 주지 않는다. 사나이는 두고 보라며 마을을 떠났다 다시 돌아온다."},
     {title:"5장 · 사라진 아이들", text:"사나이가 다시 피리를 불자 이번엔 아이들이 홀려 그를 따라간다. 아이들은 산속으로 들어가 다시는 돌아오지 않았다."}
   ],
-  musical:["피리 선율을 학급 악기로 만들어 '홀리는 소리' 표현","쥐 떼 / 아이들 두 번의 행렬을 대비되는 안무로","'약속을 어기면 어떻게 될까' 결말을 우리 반이 다시 쓰기"]
+  musical:["피리 선율을 학급 악기로 만들어 ‘홀리는 소리’를 표현해 보세요.","쥐 떼와 아이들, 두 번의 행렬을 대비되는 안무로 구성해 보세요.","‘약속을 어기면 어떻게 될까’를 생각하며 결말을 우리 반이 다시 써 보세요."]
 }
 );
 
@@ -1263,6 +1345,34 @@ const ORIGINS = {
 };
 
 const $ = (s) => document.querySelector(s);
+
+/* 외부 백과사전 링크 (위키백과 · 나무위키) */
+function refTitle(t){ return t.split("(")[0].trim(); }
+function wikiUrl(t){ return "https://ko.wikipedia.org/wiki/" + encodeURIComponent(refTitle(t).replace(/\s+/g,"_")); }
+function namuUrl(t){ return "https://namu.wiki/w/" + encodeURIComponent(refTitle(t)); }
+
+/* 히어로 통계 */
+(function fillStats(){
+  const total = STORIES.length;
+  const korea = STORIES.filter(s => s.origin === "korea").length;
+  const world = total - korea;
+  const stats = [
+    {n: total, l: "수록 동화"},
+    {n: korea, l: "한국 전래동화"},
+    {n: world, l: "세계 명작 동화"}
+  ];
+  $("#heroStats").innerHTML = stats.map((x, i) =>
+    (i ? '<div class="hero-stat-div"></div>' : '') +
+    `<div class="hero-stat"><b>${x.n}</b><span>${x.l}</span></div>`).join("");
+})();
+
+/* 이용 안내 모달 */
+const helpOverlay = $("#helpOverlay");
+function openHelp(){ helpOverlay.classList.add("open"); document.body.style.overflow = "hidden"; $("#helpClose").focus(); }
+function closeHelp(){ helpOverlay.classList.remove("open"); document.body.style.overflow = ""; }
+$("#helpBtn").onclick = openHelp;
+$("#helpClose").onclick = closeHelp;
+helpOverlay.addEventListener("click", e => { if(e.target === helpOverlay) closeHelp(); });
 
 /* 클립보드: navigator.clipboard 실패 시 execCommand 폴백 */
 async function copyText(txt){
@@ -1357,6 +1467,14 @@ function open(s){
     <div class="sheet-body">
       <div class="tags">${s.themes.map(t => `<span class="tag"># ${t}</span>`).join("")}</div>
 
+      <div class="link-hint">이 이야기를 더 깊이 살펴보고 싶다면</div>
+      <div class="sheet-links">
+        <a class="link-btn" href="${wikiUrl(s.title)}" target="_blank" rel="noopener noreferrer">
+          <span class="material-icons-outlined">public</span>위키백과<span class="ext material-icons-outlined">open_in_new</span></a>
+        <a class="link-btn" href="${namuUrl(s.title)}" target="_blank" rel="noopener noreferrer">
+          <span class="material-icons-outlined">travel_explore</span>나무위키<span class="ext material-icons-outlined">open_in_new</span></a>
+      </div>
+
       <div class="section">
         <h3 class="section-title"><span class="material-icons-outlined">description</span>줄거리</h3>
         <div class="summary">${s.summary}</div>
@@ -1439,7 +1557,11 @@ function close(){
   document.body.style.overflow = "";
 }
 overlay.addEventListener("click", e => { if(e.target === overlay) close(); });
-document.addEventListener("keydown", e => { if(e.key === "Escape" && overlay.classList.contains("open")) close(); });
+document.addEventListener("keydown", e => {
+  if(e.key !== "Escape") return;
+  if(helpOverlay.classList.contains("open")) closeHelp();
+  else if(overlay.classList.contains("open")) close();
+});
 
 render();
 </script>
