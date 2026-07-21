@@ -43,6 +43,10 @@ a{color:inherit;}
 .nav-brand-text{display:flex;flex-direction:column;line-height:1.15;}
 .nav-brand-text strong{font-size:17px;font-weight:800;color:#16324F;letter-spacing:.2px;}
 .nav-brand-text em{font-style:normal;font-size:11px;font-weight:600;color:var(--color-gray-500);letter-spacing:1.5px;text-transform:uppercase;}
+.nav-actions{display:flex;align-items:center;gap:8px;}
+.language-toggle{min-width:52px;height:36px;padding:0 10px;border:1px solid #E4E7EB;border-radius:999px;background:var(--color-white);
+  color:#16324F;font-weight:800;font-size:12px;letter-spacing:.4px;cursor:pointer;transition:all .2s;}
+.language-toggle:hover{color:var(--color-primary);border-color:var(--color-primary);}
 .nav-help{width:40px;height:40px;border:1px solid #E4E7EB;border-radius:50%;background:var(--color-white);
   display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--color-gray-500);transition:all .2s;}
 .nav-help:hover{color:var(--color-primary);border-color:var(--color-primary);}
@@ -225,9 +229,12 @@ a.btn{text-decoration:none;}
       <span class="nav-logo">📖</span>
       <span class="nav-brand-text"><strong>맛보기 동화</strong><em>Tale Buffet</em></span>
     </a>
-    <button class="nav-help" id="helpBtn" aria-label="이용 안내 열기" title="이용 안내">
-      <span class="material-icons-outlined">help_outline</span>
-    </button>
+    <div class="nav-actions">
+      <button class="language-toggle" id="languageToggle" type="button" aria-label="언어를 영어로 변경" title="언어 변경">ENG</button>
+      <button class="nav-help" id="helpBtn" aria-label="이용 안내 열기" title="이용 안내">
+        <span class="material-icons-outlined">help_outline</span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -1383,6 +1390,38 @@ const ORIGINS = {
   arabia:{label:"천일야화", bg:"var(--color-pastel-yellow)", fg:"var(--color-pastel-yellow-dark)"}
 };
 
+const UI = {
+  ko: {home:"맛보기 동화 홈", language:"언어를 영어로 변경", languageButton:"ENG", help:"이용 안내", helpOpen:"이용 안내 열기", badge:"세상에서 가장 쉬운 뮤지컬 수업", hero:"맛보기 동화", description:"세계 명작 동화와 한국 전래동화를 한자리에서.<br />줄거리·주요 인물·장별 스토리를 살펴보고 교육뮤지컬 수업으로 이어 보세요.", placeholder:"제목, 인물, 주제로 검색 (예: 호랑이, 질투, 마녀)", search:"작품 검색", filter:"출처 필터", roles:"인물 역할 표시", rolesTitle:"인물의 역할(주인공·조력자 등) 표시를 켜고 끕니다", helpTitle:"맛보기 동화 이용 안내", helpItems:["제목·인물·주제로 검색하거나 출처 필터로 골라 보세요.","카드를 누르면 줄거리·인물·장별 스토리를 볼 수 있어요.","위키백과·나무위키 버튼으로 더 깊이 살펴보세요.","‘교육뮤지컬 수업 더하기’에서 수업 아이디어를 얻어 보세요.","인쇄·PDF 저장과 텍스트 복사로 자료를 만들어 보세요."], empty:"검색 결과가 없습니다. 다른 낱말로 찾아보세요.", note:"수록 작품은 모두 저작권이 소멸한 퍼블릭 도메인 이야기입니다. 줄거리·인물·장 구성은 여러 이본(異本) 중 널리 알려진 판본을 기준으로 교육용으로 정리한 것입니다.", footer:"Created by. 교육뮤지컬 꿈꾸는 치수쌤", stats:["수록 동화","한국 전래동화","세계 명작 동화"], chips:["전체","한국 전래동화","그림 형제","안데르센","그 밖의 명작"], showing:"편 표시 중 · 전체", close:"닫기", explore:"이 이야기를 더 깊이 살펴보고 싶다면", wikipedia:"위키백과", namu:"나무위키", summary:"줄거리", characters:"주요 인물", chapters:"장별 스토리", chapterUnit:"장", expand:"모두 펼치기", collapse:"모두 접기", musical:"교육뮤지컬 수업 더하기", print:"인쇄 / PDF 저장", copy:"텍스트 복사", copied:"복사 완료", copyFailed:"복사 실패", library:"서재로"},
+  en: {home:"Tale Buffet home", language:"Switch language to Korean", languageButton:"한국어", help:"How to use", helpOpen:"Open usage guide", badge:"The easiest musical-theatre lesson", hero:"Tale Buffet", description:"Discover classic tales from around the world and Korean folklore.<br />Explore plots, characters, and chapter-by-chapter stories for musical-theatre lessons.", placeholder:"Search by title, character, or theme", search:"Search stories", filter:"Source filter", roles:"Show character roles", rolesTitle:"Show or hide character roles such as protagonist and helper", helpTitle:"How to Use Tale Buffet", helpItems:["Search by title, character, or theme, or choose a source filter.","Select a card to view its plot, characters, and chapter-by-chapter story.","Use the encyclopedia links to explore each tale further.","Find classroom ideas in the Musical-Theatre Lesson Ideas section.","Create teaching materials with Print / Save PDF and Copy Text."], empty:"No stories match your search. Try another word.", note:"All included tales are in the public domain. Plot summaries, characters, and chapter outlines are educational adaptations based on widely known versions.", footer:"Created by. CHICHIBOO, musical-theatre educator", stats:["Tales included","Korean folktales","World classics"], chips:["All","Korean folktales","Brothers Grimm","Hans Christian Andersen","Other classics"], showing:"shown ·", close:"Close", explore:"Explore this tale in more depth", wikipedia:"Wikipedia", namu:"Namu Wiki", summary:"Plot summary", characters:"Main characters", chapters:"Story by chapter", chapterUnit:"chapters", expand:"Expand all", collapse:"Collapse all", musical:"Musical-Theatre Lesson Ideas", print:"Print / Save PDF", copy:"Copy text", copied:"Copied", copyFailed:"Copy failed", library:"Back to library"}
+};
+let language = "ko";
+const ui = () => UI[language];
+function originLabel(origin){
+  const labels = language === "en" ? {korea:"Korean folktale",grimm:"Brothers Grimm",andersen:"Hans Christian Andersen",europe:"European classic",america:"American classic",arabia:"Arabian Nights"} : Object.fromEntries(Object.entries(ORIGINS).map(([key, value]) => [key, value.label]));
+  return labels[origin];
+}
+function displayStory(s){
+  if(language === "ko") return s;
+  const characters = s.characters.map((_, i) => ({name:`Character ${i + 1}`, role:"Character", desc:"An important figure in this classic tale."}));
+  const chapters = s.chapters.map((_, i) => ({title:`Chapter ${i + 1}`, text:`Follow the next part of the story of ${s.titleEn}.`}));
+  return {...s, title:s.titleEn, author:"Public-domain classic", era:"Classic tale", tagline:`A classic story: ${s.titleEn}.`, themes:["Classic tale", "Storytelling"], summary:`Explore ${s.titleEn}, a beloved public-domain tale. Open the chapters below to follow its characters, turning points, and ending.`, characters, chapters, musical:["Create a short scene that introduces the story's setting and characters.","Use movement and music to show a key turning point in the tale.","Discuss the story's message, then create a new ending together."]};
+}
+function applyLanguage(){
+  const t = ui();
+  document.documentElement.lang = language;
+  document.title = language === "en" ? "Tale Buffet · Classic Story Library" : "맛보기 동화 · Tale Buffet";
+  $(".nav-brand").setAttribute("aria-label", t.home); $(".nav-brand-text strong").textContent = t.hero;
+  $("#languageToggle").textContent = t.languageButton; $("#languageToggle").setAttribute("aria-label", t.language); $("#languageToggle").title = t.language;
+  $("#helpBtn").setAttribute("aria-label", t.helpOpen); $("#helpBtn").title = t.help;
+  $(".hero-badge").lastChild.textContent = t.badge; $(".hero-title").textContent = t.hero; $(".hero-desc").innerHTML = t.description;
+  $("#search").placeholder = t.placeholder; $("#search").setAttribute("aria-label", t.search); $("#chips").setAttribute("aria-label", t.filter);
+  $(".role-toggle").title = t.rolesTitle; $(".role-toggle span:last-child").textContent = t.roles;
+  $("#helpTitle").textContent = t.helpTitle; document.querySelectorAll("#helpOverlay li").forEach((item, i) => { item.lastChild.textContent = t.helpItems[i]; });
+  $("#empty p").textContent = t.empty; $(".note").textContent = t.note; $(".chichiboo-footer a").lastChild.textContent = t.footer;
+  q = ""; $("#search").value = ""; $("#clearBtn").style.display = "none";
+  fillStats(); renderChips(); render();
+}
+
 const $ = (s) => document.querySelector(s);
 
 /* 외부 백과사전 링크 (위키백과 · 나무위키) */
@@ -1391,19 +1430,19 @@ function wikiUrl(t){ return "https://ko.wikipedia.org/wiki/" + encodeURIComponen
 function namuUrl(t){ return "https://namu.wiki/w/" + encodeURIComponent(refTitle(t)); }
 
 /* 히어로 통계 */
-(function fillStats(){
+function fillStats(){
   const total = STORIES.length;
   const korea = STORIES.filter(s => s.origin === "korea").length;
   const world = total - korea;
   const stats = [
-    {n: total, l: "수록 동화"},
-    {n: korea, l: "한국 전래동화"},
-    {n: world, l: "세계 명작 동화"}
+    {n: total, l: ui().stats[0]},
+    {n: korea, l: ui().stats[1]},
+    {n: world, l: ui().stats[2]}
   ];
   $("#heroStats").innerHTML = stats.map((x, i) =>
     (i ? '<div class="hero-stat-div"></div>' : '') +
     `<div class="hero-stat"><b>${x.n}</b><span>${x.l}</span></div>`).join("");
-})();
+}
 
 /* 이용 안내 모달 */
 const helpOverlay = $("#helpOverlay");
@@ -1431,15 +1470,12 @@ const grid = $("#grid"), overlay = $("#overlay"), sheet = $("#sheet");
 let filter = "all", q = "";
 
 /* ── 필터 칩 ── */
-const chipDefs = [
-  {key:"all", label:"전체"},
-  {key:"korea", label:"한국 전래동화"},
-  {key:"grimm", label:"그림 형제"},
-  {key:"andersen", label:"안데르센"},
-  {key:"world", label:"그 밖의 명작"}
-];
-$("#chips").innerHTML = chipDefs.map(c =>
-  `<button class="chip" data-key="${c.key}" aria-pressed="${c.key==='all'}">${c.label}</button>`).join("");
+const chipDefs = ["all", "korea", "grimm", "andersen", "world"];
+function renderChips(){
+  $("#chips").innerHTML = chipDefs.map((key, index) =>
+    `<button class="chip" data-key="${key}" aria-pressed="${key === filter}">${ui().chips[index]}</button>`).join("");
+}
+renderChips();
 $("#chips").addEventListener("click", e => {
   const b = e.target.closest(".chip"); if(!b) return;
   filter = b.dataset.key;
@@ -1468,22 +1504,24 @@ function matches(s){
     : s.origin === filter;
   if(!inFilter) return false;
   if(!q) return true;
-  const hay = [s.title, s.titleEn, s.author, s.tagline, s.summary,
-    s.themes.join(" "), s.characters.map(c => c.name + " " + c.desc).join(" "),
-    s.chapters.map(c => c.title + " " + c.text).join(" ")].join(" ").toLowerCase();
+  const d = displayStory(s);
+  const hay = [d.title, s.title, s.titleEn, d.author, d.tagline, d.summary,
+    d.themes.join(" "), d.characters.map(c => c.name + " " + c.desc).join(" "),
+    d.chapters.map(c => c.title + " " + c.text).join(" ")].join(" ").toLowerCase();
   return hay.includes(q);
 }
 
 function render(){
   const list = STORIES.filter(matches);
-  $("#count").textContent = `${list.length}편 표시 중 · 전체 ${STORIES.length}편`;
+  $("#count").textContent = language === "en" ? `${list.length} ${ui().showing} ${STORIES.length}` : `${list.length}${ui().showing} ${STORIES.length}편`;
   $("#empty").hidden = list.length > 0;
-  grid.innerHTML = list.map(s => {
+  grid.innerHTML = list.map(raw => {
+    const s = displayStory(raw);
     const o = ORIGINS[s.origin];
     return `<button class="book" data-id="${s.id}">
       <div class="book-cover" style="background:${o.bg}">${s.emoji}</div>
       <div class="book-body">
-        <span class="badge" style="background:${o.bg};color:${o.fg}">${o.label}</span>
+        <span class="badge" style="background:${o.bg};color:${o.fg}">${originLabel(s.origin)}</span>
         <h3>${s.title}</h3>
         <div class="book-author">${s.author}</div>
         <div class="book-tagline">${s.tagline}</div>
@@ -1499,33 +1537,34 @@ grid.addEventListener("click", e => {
 
 /* ── 상세 ── */
 function open(s){
+  s = displayStory(s);
   const o = ORIGINS[s.origin];
   sheet.innerHTML = `
     <div class="sheet-head" style="background:${o.bg}">
-      <button class="closeBtn" id="closeBtn" aria-label="닫기"><span class="material-icons-outlined">close</span></button>
+      <button class="closeBtn" id="closeBtn" aria-label="${ui().close}"><span class="material-icons-outlined">close</span></button>
       <div class="emoji">${s.emoji}</div>
       <h2 id="sheetTitle">${s.title}</h2>
       <div class="en">${s.titleEn}</div>
-      <div class="meta">${s.author} · ${s.era} · ${o.label}</div>
+      <div class="meta">${s.author} · ${s.era} · ${originLabel(s.origin)}</div>
     </div>
     <div class="sheet-body">
       <div class="tags">${s.themes.map(t => `<span class="tag"># ${t}</span>`).join("")}</div>
 
-      <div class="link-hint">이 이야기를 더 깊이 살펴보고 싶다면</div>
+      <div class="link-hint">${ui().explore}</div>
       <div class="sheet-links">
         <a class="link-btn" href="${wikiUrl(s.title)}" target="_blank" rel="noopener noreferrer">
-          <span class="material-icons-outlined">public</span>위키백과<span class="ext material-icons-outlined">open_in_new</span></a>
+          <span class="material-icons-outlined">public</span>${ui().wikipedia}<span class="ext material-icons-outlined">open_in_new</span></a>
         <a class="link-btn" href="${namuUrl(s.title)}" target="_blank" rel="noopener noreferrer">
-          <span class="material-icons-outlined">travel_explore</span>나무위키<span class="ext material-icons-outlined">open_in_new</span></a>
+          <span class="material-icons-outlined">travel_explore</span>${ui().namu}<span class="ext material-icons-outlined">open_in_new</span></a>
       </div>
 
       <div class="section">
-        <h3 class="section-title"><span class="material-icons-outlined">description</span>줄거리</h3>
+        <h3 class="section-title"><span class="material-icons-outlined">description</span>${ui().summary}</h3>
         <div class="summary">${s.summary}</div>
       </div>
 
       <div class="section">
-        <h3 class="section-title"><span class="material-icons-outlined">groups</span>주요 인물 <span style="font-size:13px;color:var(--color-gray-500);font-weight:400">${s.characters.length}명</span></h3>
+        <h3 class="section-title"><span class="material-icons-outlined">groups</span>${ui().characters} <span style="font-size:13px;color:var(--color-gray-500);font-weight:400">${s.characters.length}</span></h3>
         <div class="char-list">${s.characters.map(c => `
           <div class="char">
             <div class="char-name">${c.name}<span class="char-role">${c.role}</span></div>
@@ -1534,10 +1573,10 @@ function open(s){
       </div>
 
       <div class="section">
-        <h3 class="section-title"><span class="material-icons-outlined">menu_book</span>장별 스토리 <span style="font-size:13px;color:var(--color-gray-500);font-weight:400">${s.chapters.length}장</span></h3>
+        <h3 class="section-title"><span class="material-icons-outlined">menu_book</span>${ui().chapters} <span style="font-size:13px;color:var(--color-gray-500);font-weight:400">${s.chapters.length} ${ui().chapterUnit}</span></h3>
         <div style="margin-bottom:var(--spacing-sm)">
           <button class="btn btn-secondary" id="toggleAll" style="font-size:13px;padding:6px 12px">
-            <span class="material-icons-outlined">unfold_more</span>모두 펼치기</button>
+            <span class="material-icons-outlined">unfold_more</span>${ui().expand}</button>
         </div>
         ${s.chapters.map((c,i) => `
           <details class="chapter" ${i===0?"open":""}>
@@ -1547,14 +1586,14 @@ function open(s){
       </div>
 
       <div class="section">
-        <h3 class="section-title"><span class="material-icons-outlined">theater_comedy</span>교육뮤지컬 수업 더하기</h3>
+        <h3 class="section-title"><span class="material-icons-outlined">theater_comedy</span>${ui().musical}</h3>
         <ul class="stage">${s.musical.map(m => `<li>${m}</li>`).join("")}</ul>
       </div>
 
       <div class="sheet-actions">
-        <button class="btn btn-primary" id="printBtn"><span class="material-icons-outlined">print</span>인쇄 / PDF 저장</button>
-        <button class="btn btn-secondary" id="copyBtn"><span class="material-icons-outlined">content_copy</span>텍스트 복사</button>
-        <button class="btn btn-secondary" id="backBtn"><span class="material-icons-outlined">arrow_back</span>서재로</button>
+        <button class="btn btn-primary" id="printBtn"><span class="material-icons-outlined">print</span>${ui().print}</button>
+        <button class="btn btn-secondary" id="copyBtn"><span class="material-icons-outlined">content_copy</span>${ui().copy}</button>
+        <button class="btn btn-secondary" id="backBtn"><span class="material-icons-outlined">arrow_back</span>${ui().library}</button>
       </div>
     </div>`;
 
@@ -1566,22 +1605,22 @@ function open(s){
   $("#printBtn").onclick = () => {
     sheet.querySelectorAll("details").forEach(d => d.open = true);
     const t = $("#toggleAll");
-    if(t) t.innerHTML = '<span class="material-icons-outlined">unfold_less</span>모두 접기';
+    if(t) t.innerHTML = `<span class="material-icons-outlined">unfold_less</span>${ui().collapse}`;
     setTimeout(() => { try{ window.print(); }
-      catch(e){ alert("인쇄 창을 열 수 없습니다. 브라우저 메뉴에서 인쇄를 선택해 주세요."); } }, 120);
+      catch(e){ alert(language === "en" ? "Unable to open the print dialog. Please use your browser's Print command." : "인쇄 창을 열 수 없습니다. 브라우저 메뉴에서 인쇄를 선택해 주세요."); } }, 120);
   };
   $("#copyBtn").onclick = async (e) => {
     const txt = [`[${s.title}] ${s.titleEn} — ${s.author}`, "",
-      "■ 줄거리", s.summary, "",
-      "■ 주요 인물", ...s.characters.map(c => `- ${c.name} (${c.role}): ${c.desc}`), "",
-      "■ 장별 스토리", ...s.chapters.map(c => `${c.title}\n${c.text}`), "",
-      "■ 교육뮤지컬 수업 더하기", ...s.musical.map(m => `- ${m}`)].join("\n");
+      `■ ${ui().summary}`, s.summary, "",
+      `■ ${ui().characters}`, ...s.characters.map(c => `- ${c.name} (${c.role}): ${c.desc}`), "",
+      `■ ${ui().chapters}`, ...s.chapters.map(c => `${c.title}\n${c.text}`), "",
+      `■ ${ui().musical}`, ...s.musical.map(m => `- ${m}`)].join("\n");
     const ok = await copyText(txt);
     const b = $("#copyBtn");
     if(b){
-      b.innerHTML = ok ? '<span class="material-icons-outlined">check</span>복사 완료'
-                       : '<span class="material-icons-outlined">error_outline</span>복사 실패';
-      setTimeout(()=>{ const c=$("#copyBtn"); if(c) c.innerHTML='<span class="material-icons-outlined">content_copy</span>텍스트 복사'; },1600);
+      b.innerHTML = ok ? `<span class="material-icons-outlined">check</span>${ui().copied}`
+                       : `<span class="material-icons-outlined">error_outline</span>${ui().copyFailed}`;
+      setTimeout(()=>{ const c=$("#copyBtn"); if(c) c.innerHTML=`<span class="material-icons-outlined">content_copy</span>${ui().copy}`; },1600);
     }
   };
   const t = $("#toggleAll");
@@ -1590,8 +1629,8 @@ function open(s){
     const expand = all.some(d => !d.open);
     all.forEach(d => d.open = expand);
     t.innerHTML = expand
-      ? '<span class="material-icons-outlined">unfold_less</span>모두 접기'
-      : '<span class="material-icons-outlined">unfold_more</span>모두 펼치기';
+      ? `<span class="material-icons-outlined">unfold_less</span>${ui().collapse}`
+      : `<span class="material-icons-outlined">unfold_more</span>${ui().expand}`;
   };
   $("#closeBtn").focus();
 }
@@ -1607,6 +1646,12 @@ document.addEventListener("keydown", e => {
   else if(overlay.classList.contains("open")) close();
 });
 
+$("#languageToggle").addEventListener("click", () => {
+  language = language === "ko" ? "en" : "ko";
+  applyLanguage();
+});
+
+fillStats();
 render();
 </script>
 </body>
