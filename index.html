@@ -64,7 +64,7 @@ a{color:inherit;}
   box-shadow:0 8px 24px rgba(22,50,79,.14);transition:border-color .2s,box-shadow .2s;}
 .hero-search:focus-within{border-color:var(--color-primary);box-shadow:0 8px 28px rgba(0,109,210,.22);}
 .hero-search .material-icons-outlined{color:var(--color-primary);}
-#search{flex:1;border:none;outline:none;font-size:16px;background:transparent;color:var(--color-gray-900);}
+#search{flex:1;min-width:0;border:none;outline:none;font-size:16px;background:transparent;color:var(--color-gray-900);text-overflow:ellipsis;}
 #clearBtn{border:none;background:none;cursor:pointer;color:var(--color-gray-500);display:none;padding:0;}
 .hero-stats{display:flex;align-items:center;justify-content:center;gap:var(--spacing-lg);margin-top:var(--spacing-lg);flex-wrap:wrap;}
 .hero-stat{display:flex;flex-direction:column;align-items:center;line-height:1.2;}
@@ -75,8 +75,11 @@ a{color:inherit;}
 
 /* Filter toolbar (sticky under nav) */
 .toolbar{position:sticky;top:var(--nav-h);z-index:30;background:rgba(251,251,252,.94);backdrop-filter:blur(8px);border-bottom:1px solid #ECEFF3;}
-.toolbar-inner{max-width:1100px;margin:0 auto;padding:12px var(--spacing-md);display:flex;align-items:center;gap:var(--spacing-md);flex-wrap:wrap;}
-.chips{display:flex;gap:var(--spacing-xs);overflow-x:auto;padding-bottom:2px;scrollbar-width:thin;flex:1;min-width:0;}
+.toolbar-inner{max-width:1100px;margin:0 auto;padding:12px var(--spacing-md);display:flex;align-items:center;gap:var(--spacing-md);}
+.chips{display:flex;gap:var(--spacing-xs);overflow-x:auto;padding-bottom:2px;scrollbar-width:thin;flex:1;min-width:0;-webkit-overflow-scrolling:touch;}
+.chips::-webkit-scrollbar{height:4px;}
+.chips::-webkit-scrollbar-thumb{background:var(--color-gray-300);border-radius:999px;}
+.toolbar-meta{display:flex;align-items:center;gap:var(--spacing-md);flex:0 0 auto;}
 .chip{flex:0 0 auto;border:1px solid var(--color-gray-300);background:var(--color-white);color:var(--color-gray-700);
   border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;}
 .chip:hover{border-color:var(--color-primary);color:var(--color-primary);}
@@ -89,6 +92,27 @@ a{color:inherit;}
 .role-toggle input:checked + .switch{background:var(--color-primary);}
 .role-toggle input:checked + .switch::after{transform:translateX(16px);}
 .role-toggle input:focus-visible + .switch{outline:3px solid var(--color-primary);outline-offset:2px;}
+
+/* Narrow screens: stack filter chips over meta row */
+@media(max-width:640px){
+  .nav-inner{padding:0 var(--spacing-md);}
+  .nav-brand-text strong{font-size:16px;}
+  .hero{padding:var(--spacing-lg) var(--spacing-md) var(--spacing-lg);}
+  .hero-title{font-size:2.4rem;-webkit-text-stroke:1px #16324F;}
+  .hero-search{padding:11px var(--spacing-md);}
+  .hero-stats{gap:var(--spacing-md);}
+  .hero-stat b{font-size:1.3rem;}
+  .toolbar-inner{flex-direction:column;align-items:stretch;gap:10px;}
+  .chips{width:100%;}
+  .toolbar-meta{width:100%;justify-content:space-between;gap:var(--spacing-sm);}
+}
+@media(max-width:360px){
+  .hero-title{font-size:2.1rem;}
+  .hero-stats{gap:10px;}
+  .hero-stat-div{display:none;}
+  .count{font-size:12px;}
+  .role-toggle{font-size:12px;}
+}
 
 /* Grid */
 main{flex:1;max-width:1100px;width:100%;margin:0 auto;padding:var(--spacing-lg) var(--spacing-md) var(--spacing-xl);}
@@ -225,12 +249,14 @@ a.btn{text-decoration:none;}
 <div class="toolbar">
   <div class="toolbar-inner">
     <div class="chips" id="chips" role="group" aria-label="출처 필터"></div>
-    <div class="count" id="count"></div>
-    <label class="role-toggle" title="인물의 역할(주인공·조력자 등) 표시를 켜고 끕니다">
-      <input type="checkbox" id="roleToggle" />
-      <span class="switch"></span>
-      <span>인물 역할 표시</span>
-    </label>
+    <div class="toolbar-meta">
+      <div class="count" id="count"></div>
+      <label class="role-toggle" title="인물의 역할(주인공·조력자 등) 표시를 켜고 끕니다">
+        <input type="checkbox" id="roleToggle" />
+        <span class="switch"></span>
+        <span>인물 역할 표시</span>
+      </label>
+    </div>
   </div>
 </div>
 
