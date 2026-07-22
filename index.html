@@ -164,11 +164,8 @@ main{flex:1;max-width:1100px;width:100%;margin:0 auto;padding:var(--spacing-lg) 
 body.show-roles .char-role{display:inline-block;}
 .char-desc{font-size:13px;color:var(--color-gray-700);margin-top:var(--spacing-xs);}
 .chapter{border:1px solid #E4E7EB;border-radius:var(--border-radius-md);margin-bottom:var(--spacing-sm);overflow:hidden;}
-.chapter summary{cursor:pointer;padding:12px var(--spacing-md);font-weight:700;font-size:15px;list-style:none;
-  display:flex;align-items:center;justify-content:space-between;gap:var(--spacing-sm);background:var(--color-gray-100);}
-.chapter summary::-webkit-details-marker{display:none;}
-.chapter summary::after{content:'expand_more';font-family:'Material Icons Outlined';font-size:20px;color:var(--color-gray-500);transition:transform .2s;}
-.chapter[open] summary::after{transform:rotate(180deg);}
+.chapter-title{padding:12px var(--spacing-md);font-weight:700;font-size:15px;
+  display:flex;align-items:center;gap:var(--spacing-sm);background:var(--color-gray-100);}
 .chapter p{padding:var(--spacing-md);font-size:15px;color:var(--color-gray-700);}
 .stage{background:var(--color-pastel-blue);border-radius:var(--border-radius-md);padding:var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-lg);}
 .stage li{font-size:14px;color:var(--color-pastel-blue-dark);margin-bottom:6px;line-height:1.55;}
@@ -216,8 +213,6 @@ a.btn{text-decoration:none;}
   .overlay{position:static;display:block;background:none;padding:0;}
   .sheet{box-shadow:none;max-width:none;}
   .chapter p{display:block!important;}
-  details{display:block;}
-  details > summary{list-style:none;}
 }
 </style>
 </head>
@@ -985,7 +980,7 @@ STORIES.push(
   themes:["저주","예언","기다림","가시덤불"],
   summary:"오랜 기다림 끝에 태어난 공주의 축하 잔치에 초대받지 못한 요정이 나타나 물레 바늘에 찔려 죽으리라 저주한다. 아직 선물을 주지 않았던 요정이 저주를 죽음 대신 백 년의 잠으로 바꾼다. 왕은 나라의 물레를 모두 없애지만, 열다섯 살 생일에 공주는 성 꼭대기 방에서 물레를 발견해 손가락을 찔린다. 성 전체가 잠들고 가시덤불에 덮인 지 백 년, 때가 되어 찾아온 왕자 앞에서 덤불이 갈라지고 공주가 깨어난다.",
   characters:[
-    {name:"공주(오로라)", role:"주인공", desc:"운명을 피하려는 모든 노력에도 예언대로 잠드는 인물."},
+    {name:"공주(들장미 공주)", role:"주인공", desc:"운명을 피하려는 모든 노력에도 예언대로 잠드는 인물. 그림판에서는 ‘들장미(Dornröschen)’로 불린다."},
     {name:"열세 번째 요정", role:"대립 인물", desc:"초대받지 못한 존재. 배제가 저주를 낳는다."},
     {name:"막내 요정", role:"조력자", desc:"저주를 없애지 못하고 다만 누그러뜨린다."},
     {name:"왕", role:"주변 인물", desc:"물레를 모두 태우지만 운명은 막지 못한다."},
@@ -1377,6 +1372,88 @@ STORIES.push(
     {title:"5장 · 사라진 아이들", text:"사나이가 다시 피리를 불자 이번엔 아이들이 홀려 그를 따라간다. 아이들은 산속으로 들어가 다시는 돌아오지 않았다."}
   ],
   musical:["피리 선율을 학급 악기로 만들어 ‘홀리는 소리’를 표현해 보세요.","쥐 떼와 아이들, 두 번의 행렬을 대비되는 안무로 구성해 보세요.","‘약속을 어기면 어떻게 될까’를 생각하며 결말을 우리 반이 다시 써 보세요."]
+},
+{
+  id:"uijoheun", title:"의좋은 형제", titleEn:"The Devoted Brothers", author:"작자 미상",
+  origin:"korea", era:"구전", emoji:"🌾", tagline:"한밤중에 서로의 낟가리로 볏단을 나른 형과 아우",
+  themes:["형제","우애","나눔","배려"],
+  summary:"가을걷이를 마친 형과 아우가 논에 나란히 볏단을 쌓아 둔다. 형은 갓 살림을 차린 아우가 걱정되어, 아우는 식구가 많은 형이 걱정되어, 밤마다 몰래 제 볏단을 상대의 낟가리로 옮겨다 놓는다. 이상하게도 아무리 옮겨도 제 낟가리는 조금도 줄지 않는다. 어느 달 밝은 밤, 볏단을 지고 가던 두 형제가 논둑 한가운데서 딱 마주친다. 서로의 마음을 알아챈 형제는 볏단을 내려놓고 얼싸안는다.",
+  characters:[
+    {name:"형", role:"주인공", desc:"새살림을 난 아우의 살림이 걱정되어 제 몫을 덜어 주려는 인물."},
+    {name:"아우", role:"주인공", desc:"식구 많은 형의 형편을 헤아려 제 볏단을 옮기는 인물."},
+    {name:"형과 아우의 아내", role:"주변 인물", desc:"두 사람의 마음씀을 곁에서 지켜보는 식구들."},
+    {name:"낟가리", role:"장치", desc:"아무리 옮겨도 줄지 않는, 우애가 눈에 보이는 자리."}
+  ],
+  chapters:[
+    {title:"1장 · 가을걷이", text:"형과 아우가 나란히 논에서 벼를 거둔다. 타작을 마친 두 사람은 각자 몫만큼 볏단을 쌓아 낟가리를 만든다."},
+    {title:"2장 · 형의 마음", text:"형은 이제 막 살림을 차린 아우가 마음에 걸린다. 밤이 깊자 제 볏단을 한 짐 지어 아우의 낟가리에 몰래 옮겨 놓는다."},
+    {title:"3장 · 아우의 마음", text:"아우도 식구 많은 형의 살림이 걱정된다. 같은 밤, 아우 역시 제 볏단을 지어 형의 낟가리로 나른다."},
+    {title:"4장 · 줄지 않는 낟가리", text:"이튿날 아침, 두 사람 모두 제 낟가리가 그대로인 것을 보고 고개를 갸웃한다. 그날 밤도, 다음 밤도 볏단 나르기는 계속된다."},
+    {title:"5장 · 달밤의 마주침", text:"달 밝은 밤, 볏단을 지고 가던 형과 아우가 논둑에서 마주친다. 그제야 서로의 마음을 안 형제는 볏단을 내려놓고 부둥켜안는다."}
+  ],
+  musical:["볏단을 지고 나르는 동작을 반복 리듬의 노동요로 만들어 보세요.","형과 아우가 같은 밤 서로를 생각하는 마음을 이중 독백으로 겹쳐 표현해 보세요.","‘말없이 배려한 경험’을 나눈 뒤 우리 반 이야기로 장면을 만들어 보세요."]
+},
+{
+  id:"janghwa", title:"장화홍련전", titleEn:"The Story of Janghwa and Hongryeon", author:"작자 미상 (고전소설)",
+  origin:"korea", era:"조선 후기", emoji:"🌸", tagline:"억울하게 죽은 자매가 원님 앞에 나타나 진실을 호소하다",
+  themes:["계모","억울함","진실","자매애"],
+  summary:"철산 고을 배 좌수의 두 딸 장화와 홍련은 어머니를 여의고 계모 허 씨 밑에서 자란다. 아들을 낳은 계모는 두 자매를 미워해 언니 장화에게 없는 허물을 씌워 못에 빠져 죽게 만들고, 언니를 잃은 홍련도 그 못을 찾아 뒤를 따른다. 원통하게 죽은 자매의 넋이 밤마다 고을 원님 앞에 나타나지만, 새로 온 부사들이 놀라 잇달아 목숨을 잃는다. 마침내 담대한 부사 정동호가 자매의 사연을 끝까지 듣고 진실을 밝혀 계모를 벌하고, 두 자매의 억울함을 풀어 준다.",
+  characters:[
+    {name:"장화", role:"주인공", desc:"동생을 아끼는 맏딸. 억울한 누명을 쓰고 먼저 세상을 떠난다."},
+    {name:"홍련", role:"주인공", desc:"언니를 잃은 슬픔에 그 뒤를 따르는 동생. 넋이 되어 진실을 호소한다."},
+    {name:"계모 허 씨", role:"대립 인물", desc:"의붓딸들을 시기해 누명을 꾸미는 인물."},
+    {name:"배 좌수", role:"주변 인물", desc:"계모의 말에 휘둘려 딸들을 지키지 못한 아버지."},
+    {name:"부사 정동호", role:"조력자", desc:"넋의 하소연을 두려워 않고 끝까지 들어 진실을 밝히는 인물."}
+  ],
+  chapters:[
+    {title:"1장 · 어머니를 여읜 자매", text:"배 좌수의 두 딸 장화와 홍련이 어머니를 잃는다. 자매는 서로에게 의지하며 정답게 자란다."},
+    {title:"2장 · 들어온 계모", text:"아버지가 계모 허 씨를 맞아들인다. 아들을 낳은 계모는 두 의붓딸을 점점 미워하기 시작한다."},
+    {title:"3장 · 씌워진 누명", text:"계모는 장화에게 없는 허물을 꾸며 씌운다. 아버지마저 그 말을 믿게 되고, 장화는 억울하게 집을 떠나 못에 빠져 죽는다."},
+    {title:"4장 · 못을 찾은 홍련", text:"언니가 죽은 까닭을 알게 된 홍련은 슬픔을 이기지 못하고 언니가 잠든 못을 찾아 뒤를 따른다."},
+    {title:"5장 · 원님 앞의 넋", text:"원통하게 죽은 자매의 넋이 밤마다 고을 원님 앞에 나타난다. 사연을 듣기도 전에 놀란 부사들이 잇달아 쓰러진다."},
+    {title:"6장 · 밝혀진 진실", text:"새로 온 부사 정동호가 두려움 없이 자매의 하소연을 끝까지 듣는다. 진실이 드러나 계모는 벌을 받고, 장화와 홍련의 억울함은 비로소 풀린다."}
+  ],
+  musical:["넋이 나타나는 장면을 조명 대신 천과 소리로 서늘하게 연출해 보세요.","‘아무도 믿어 주지 않을 때’의 마음을 독백으로 표현해 보세요.","진실을 밝히는 재판 장면을 모의재판 형식으로 창작해 보세요."]
+},
+{
+  id:"goldilocks", title:"골디락스와 곰 세 마리", titleEn:"Goldilocks and the Three Bears", author:"영국 전래동화 (로버트 사우디)",
+  origin:"europe", era:"1837", emoji:"🐻", tagline:"누가 내 죽을 먹고 내 의자에 앉고 내 침대에서 잤을까",
+  themes:["호기심","경계","반복","교훈"],
+  summary:"숲속을 헤매던 금발 소녀 골디락스가 문이 열린 빈 오두막에 들어간다. 아빠 곰·엄마 곰·아기 곰, 곰 세 마리의 집이다. 소녀는 식탁에 놓인 죽 세 그릇을 맛보다 너무 뜨겁지도 차갑지도 않은 아기 곰의 죽을 다 먹고, 의자 셋에 앉아 보다 아기 곰의 작은 의자를 부러뜨린다. 침대 셋에 누워 보다 꼭 맞는 아기 곰의 침대에서 잠이 든다. 산책에서 돌아온 곰 세 마리는 헝클어진 죽과 부서진 의자, 그리고 침대에 잠든 소녀를 차례로 발견한다. 잠에서 깬 골디락스는 깜짝 놀라 창밖으로 뛰어 달아난다.",
+  characters:[
+    {name:"골디락스", role:"주인공", desc:"호기심에 남의 집에 들어가 이것저것 시험해 보는 소녀."},
+    {name:"아빠 곰", role:"주변 인물", desc:"가장 크고 뜨거운 죽, 가장 큰 의자와 침대의 주인."},
+    {name:"엄마 곰", role:"주변 인물", desc:"중간 크기의 죽·의자·침대의 주인."},
+    {name:"아기 곰", role:"주변 인물", desc:"꼭 맞는 죽·의자·침대의 주인. 모두 골디락스에게 당한다."}
+  ],
+  chapters:[
+    {title:"1장 · 숲속의 오두막", text:"곰 세 마리가 뜨거운 죽이 식기를 기다리며 산책을 나간 사이, 길 잃은 골디락스가 빈 오두막을 발견해 안으로 들어간다."},
+    {title:"2장 · 세 그릇의 죽", text:"골디락스는 죽 세 그릇을 맛본다. 아빠 곰 죽은 너무 뜨겁고, 엄마 곰 죽은 너무 식었다. 딱 알맞은 아기 곰 죽은 남김없이 먹어 치운다."},
+    {title:"3장 · 세 개의 의자", text:"의자 셋에 차례로 앉아 본다. 너무 딱딱하고 너무 푹신한 큰 의자들을 지나, 꼭 맞던 아기 곰의 작은 의자는 그만 부서지고 만다."},
+    {title:"4장 · 세 개의 침대", text:"이층 방의 침대 셋에 누워 본다. 너무 높고 너무 낮은 큰 침대들을 지나, 꼭 맞는 아기 곰의 침대에서 골디락스는 스르르 잠든다."},
+    {title:"5장 · 돌아온 곰들", text:"돌아온 곰 세 마리가 먹힌 죽과 부서진 의자, 침대에 잠든 소녀를 차례로 발견한다. 아기 곰의 목소리에 눈을 뜬 골디락스는 놀라 창밖으로 달아난다."}
+  ],
+  musical:["‘너무 뜨겁고 · 너무 차갑고 · 딱 맞고’의 반복 구조를 3단 리듬 넘버로 만들어 보세요.","큰 곰·중간 곰·아기 곰의 목소리 크기를 세 단계로 나눠 연기해 보세요.","‘허락 없이 남의 것을 쓰면’을 주제로 결말을 다시 써 보세요."]
+},
+{
+  id:"elves", title:"구두장이와 요정", titleEn:"The Elves and the Shoemaker", author:"그림 형제",
+  origin:"grimm", era:"1812", emoji:"👞", tagline:"밤마다 구두를 지어 놓고 사라진 작은 손님들",
+  themes:["보은","성실","나눔","친절"],
+  summary:"가진 것이라곤 구두 한 켤레 지을 가죽뿐인 가난한 구두장이가 가죽을 마름질해 두고 잠든다. 이튿날 아침, 누군가 밤새 흠잡을 데 없는 구두를 지어 놓았고 그 구두는 좋은 값에 팔린다. 밤마다 같은 일이 이어져 부부의 형편이 넉넉해진다. 궁금해진 부부가 크리스마스 무렵 몰래 숨어 지켜보니, 벌거벗은 작은 요정 둘이 나타나 밤새 구두를 짓고 있었다. 고마운 부부는 작은 옷과 신발을 지어 선물하고, 기뻐 춤추던 요정들은 그 길로 떠나 다시 오지 않았지만 부부는 오래도록 잘 산다.",
+  characters:[
+    {name:"구두장이", role:"주인공", desc:"가난해도 정직하게 일하는 인물. 도움을 받은 뒤 갚을 줄 안다."},
+    {name:"구두장이의 아내", role:"조력자", desc:"요정들에게 줄 작은 옷을 손수 지어 보답을 제안하는 인물."},
+    {name:"두 요정", role:"조력자", desc:"밤마다 나타나 구두를 짓는 작은 존재들. 벌거벗은 채 부지런히 일한다."},
+    {name:"마름질한 가죽", role:"장치", desc:"밤사이 완성된 구두로 바뀌는, 도움의 시작점."}
+  ],
+  chapters:[
+    {title:"1장 · 마지막 가죽 한 장", text:"구두장이에게 남은 것은 구두 한 켤레 지을 가죽뿐이다. 그는 가죽을 정성껏 마름질해 작업대에 놓고 잠자리에 든다."},
+    {title:"2장 · 밤사이 지어진 구두", text:"아침에 보니 마름질해 둔 가죽이 흠 하나 없는 구두가 되어 있다. 그 구두는 제값보다 비싸게 팔린다."},
+    {title:"3장 · 늘어나는 살림", text:"가죽을 재단해 두면 밤마다 구두가 완성된다. 두 켤레가 넉 켤레가 되고, 구두장이 부부는 어느새 형편이 넉넉해진다."},
+    {title:"4장 · 숨어서 지켜본 밤", text:"누가 돕는지 궁금해진 부부가 촛불을 켜 두고 몰래 숨는다. 한밤중, 벌거벗은 작은 요정 둘이 나타나 눈 깜짝할 새 구두를 지어 놓고 사라진다."},
+    {title:"5장 · 작은 옷 선물", text:"헐벗은 요정들이 안쓰러웠던 부부는 작은 옷과 신을 지어 작업대에 놓아 둔다. 옷을 발견한 요정들은 기뻐 춤추며 떠나고, 다시는 오지 않았지만 부부는 오래도록 잘 산다."}
+  ],
+  musical:["요정들이 구두를 짓는 밤을 빠른 손동작 무언극으로 표현해 보세요.","‘몰래 도와준 사람에게 어떻게 보답할까’를 이야기한 뒤 장면을 만들어 보세요.","작은 요정의 시점에서 부르는 즐거운 노동요를 창작해 보세요."]
 }
 );
 
@@ -1391,8 +1468,8 @@ const ORIGINS = {
 };
 
 const UI = {
-  ko: {home:"맛보기 동화 홈", language:"언어를 영어로 변경", languageButton:"ENG", help:"이용 안내", helpOpen:"이용 안내 열기", badge:"세상에서 가장 쉬운 뮤지컬 수업", hero:"맛보기 동화", description:"세계 명작 동화와 한국 전래동화를 한자리에서.<br />줄거리·주요 인물·장별 스토리를 살펴보고 교육뮤지컬 수업으로 이어 보세요.", placeholder:"제목, 인물, 주제로 검색 (예: 호랑이, 질투, 마녀)", search:"작품 검색", filter:"출처 필터", roles:"인물 역할 표시", rolesTitle:"인물의 역할(주인공·조력자 등) 표시를 켜고 끕니다", helpTitle:"맛보기 동화 이용 안내", helpItems:["제목·인물·주제로 검색하거나 출처 필터로 골라 보세요.","카드를 누르면 줄거리·인물·장별 스토리를 볼 수 있어요.","위키백과·나무위키 버튼으로 더 깊이 살펴보세요.","‘교육뮤지컬 수업 더하기’에서 수업 아이디어를 얻어 보세요.","인쇄·PDF 저장과 텍스트 복사로 자료를 만들어 보세요."], empty:"검색 결과가 없습니다. 다른 낱말로 찾아보세요.", note:"수록 작품은 모두 저작권이 소멸한 퍼블릭 도메인 이야기입니다. 줄거리·인물·장 구성은 여러 이본(異本) 중 널리 알려진 판본을 기준으로 교육용으로 정리한 것입니다.", footer:"Created by. 교육뮤지컬 꿈꾸는 치수쌤", stats:["수록 동화","한국 전래동화","세계 명작 동화"], chips:["전체","한국 전래동화","그림 형제","안데르센","그 밖의 명작"], showing:"편 표시 중 · 전체", close:"닫기", explore:"이 이야기를 더 깊이 살펴보고 싶다면", wikipedia:"위키백과", namu:"나무위키", summary:"줄거리", characters:"주요 인물", chapters:"장별 스토리", chapterUnit:"장", expand:"모두 펼치기", collapse:"모두 접기", musical:"교육뮤지컬 수업 더하기", print:"인쇄 / PDF 저장", copy:"텍스트 복사", copied:"복사 완료", copyFailed:"복사 실패", library:"서재로"},
-  en: {home:"Tale Buffet home", language:"Switch language to Korean", languageButton:"한국어", help:"How to use", helpOpen:"Open usage guide", badge:"The easiest musical-theatre lesson", hero:"Tale Buffet", description:"Discover classic tales from around the world and Korean folklore.<br />Explore plots, characters, and chapter-by-chapter stories for musical-theatre lessons.", placeholder:"Search by title, character, or theme", search:"Search stories", filter:"Source filter", roles:"Show character roles", rolesTitle:"Show or hide character roles such as protagonist and helper", helpTitle:"How to Use Tale Buffet", helpItems:["Search by title, character, or theme, or choose a source filter.","Select a card to view its plot, characters, and chapter-by-chapter story.","Use the encyclopedia links to explore each tale further.","Find classroom ideas in the Musical-Theatre Lesson Ideas section.","Create teaching materials with Print / Save PDF and Copy Text."], empty:"No stories match your search. Try another word.", note:"All included tales are in the public domain. Plot summaries, characters, and chapter outlines are educational adaptations based on widely known versions.", footer:"Created by. CHICHIBOO, musical-theatre educator", stats:["Tales included","Korean folktales","World classics"], chips:["All","Korean folktales","Brothers Grimm","Hans Christian Andersen","Other classics"], showing:"shown ·", close:"Close", explore:"Explore this tale in more depth", wikipedia:"Wikipedia", namu:"Namu Wiki", summary:"Plot summary", characters:"Main characters", chapters:"Story by chapter", chapterUnit:"chapters", expand:"Expand all", collapse:"Collapse all", musical:"Musical-Theatre Lesson Ideas", print:"Print / Save PDF", copy:"Copy text", copied:"Copied", copyFailed:"Copy failed", library:"Back to library"}
+  ko: {home:"맛보기 동화 홈", language:"언어를 영어로 변경", languageButton:"ENG", help:"이용 안내", helpOpen:"이용 안내 열기", badge:"세상에서 가장 쉬운 뮤지컬 수업", hero:"맛보기 동화", description:"세계 명작 동화와 한국 전래동화를 한자리에서.<br />줄거리·주요 인물·장별 스토리를 살펴보고 교육뮤지컬 수업으로 이어 보세요.", placeholder:"제목, 인물, 주제로 검색 (예: 호랑이, 질투, 마녀)", search:"작품 검색", filter:"출처 필터", roles:"인물 역할 표시", rolesTitle:"인물의 역할(주인공·조력자 등) 표시를 켜고 끕니다", helpTitle:"맛보기 동화 이용 안내", helpItems:["제목·인물·주제로 검색하거나 출처 필터로 골라 보세요.","카드를 누르면 줄거리·인물·장별 스토리를 볼 수 있어요.","위키백과·나무위키 버튼으로 더 깊이 살펴보세요.","‘교육뮤지컬 수업 더하기’에서 수업 아이디어를 얻어 보세요.","인쇄·PDF 저장과 텍스트 복사로 자료를 만들어 보세요."], empty:"검색 결과가 없습니다. 다른 낱말로 찾아보세요.", note:"수록 작품은 모두 저작권이 소멸한 퍼블릭 도메인 이야기입니다. 줄거리·인물·장 구성은 여러 이본(異本) 중 널리 알려진 판본을 기준으로 교육용으로 정리한 것입니다.", footer:"Created by. 교육뮤지컬 꿈꾸는 치수쌤", stats:["수록 동화","한국 전래동화","세계 명작 동화"], chips:["전체","한국 전래동화","그림 형제","안데르센","그 밖의 명작"], showing:"편 표시 중 · 전체", close:"닫기", explore:"이 이야기를 더 깊이 살펴보고 싶다면", wikipedia:"위키백과", namu:"나무위키", summary:"줄거리", characters:"주요 인물", chapters:"장별 스토리", chapterUnit:"장", musical:"교육뮤지컬 수업 더하기", print:"인쇄 / PDF 저장", copy:"텍스트 복사", copied:"복사 완료", copyFailed:"복사 실패", library:"서재로"},
+  en: {home:"Tale Buffet home", language:"Switch language to Korean", languageButton:"한국어", help:"How to use", helpOpen:"Open usage guide", badge:"The easiest musical-theatre lesson", hero:"Tale Buffet", description:"Discover classic tales from around the world and Korean folklore.<br />Explore plots, characters, and chapter-by-chapter stories for musical-theatre lessons.", placeholder:"Search by title, character, or theme", search:"Search stories", filter:"Source filter", roles:"Show character roles", rolesTitle:"Show or hide character roles such as protagonist and helper", helpTitle:"How to Use Tale Buffet", helpItems:["Search by title, character, or theme, or choose a source filter.","Select a card to view its plot, characters, and chapter-by-chapter story.","Use the encyclopedia links to explore each tale further.","Find classroom ideas in the Musical-Theatre Lesson Ideas section.","Create teaching materials with Print / Save PDF and Copy Text."], empty:"No stories match your search. Try another word.", note:"All included tales are in the public domain. Plot summaries, characters, and chapter outlines are educational adaptations based on widely known versions.", footer:"Created by. CHICHIBOO, musical-theatre educator", stats:["Tales included","Korean folktales","World classics"], chips:["All","Korean folktales","Brothers Grimm","Hans Christian Andersen","Other classics"], showing:"shown ·", close:"Close", explore:"Explore this tale in more depth", wikipedia:"Wikipedia", namu:"Namu Wiki", summary:"Plot summary", characters:"Main characters", chapters:"Story by chapter", chapterUnit:"chapters", musical:"Musical-Theatre Lesson Ideas", print:"Print / Save PDF", copy:"Copy text", copied:"Copied", copyFailed:"Copy failed", library:"Back to library"}
 };
 let language = "ko";
 const ui = () => UI[language];
@@ -1574,15 +1651,11 @@ function open(s){
 
       <div class="section">
         <h3 class="section-title"><span class="material-icons-outlined">menu_book</span>${ui().chapters} <span style="font-size:13px;color:var(--color-gray-500);font-weight:400">${s.chapters.length} ${ui().chapterUnit}</span></h3>
-        <div style="margin-bottom:var(--spacing-sm)">
-          <button class="btn btn-secondary" id="toggleAll" style="font-size:13px;padding:6px 12px">
-            <span class="material-icons-outlined">unfold_more</span>${ui().expand}</button>
-        </div>
-        ${s.chapters.map((c,i) => `
-          <details class="chapter" ${i===0?"open":""}>
-            <summary>${c.title}</summary>
+        ${s.chapters.map((c) => `
+          <div class="chapter">
+            <div class="chapter-title">${c.title}</div>
             <p>${c.text}</p>
-          </details>`).join("")}
+          </div>`).join("")}
       </div>
 
       <div class="section">
@@ -1603,9 +1676,6 @@ function open(s){
 
   $("#closeBtn").onclick = $("#backBtn").onclick = close;
   $("#printBtn").onclick = () => {
-    sheet.querySelectorAll("details").forEach(d => d.open = true);
-    const t = $("#toggleAll");
-    if(t) t.innerHTML = `<span class="material-icons-outlined">unfold_less</span>${ui().collapse}`;
     setTimeout(() => { try{ window.print(); }
       catch(e){ alert(language === "en" ? "Unable to open the print dialog. Please use your browser's Print command." : "인쇄 창을 열 수 없습니다. 브라우저 메뉴에서 인쇄를 선택해 주세요."); } }, 120);
   };
@@ -1622,15 +1692,6 @@ function open(s){
                        : `<span class="material-icons-outlined">error_outline</span>${ui().copyFailed}`;
       setTimeout(()=>{ const c=$("#copyBtn"); if(c) c.innerHTML=`<span class="material-icons-outlined">content_copy</span>${ui().copy}`; },1600);
     }
-  };
-  const t = $("#toggleAll");
-  t.onclick = () => {
-    const all = [...sheet.querySelectorAll("details")];
-    const expand = all.some(d => !d.open);
-    all.forEach(d => d.open = expand);
-    t.innerHTML = expand
-      ? `<span class="material-icons-outlined">unfold_less</span>${ui().collapse}`
-      : `<span class="material-icons-outlined">unfold_more</span>${ui().expand}`;
   };
   $("#closeBtn").focus();
 }
